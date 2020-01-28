@@ -7,19 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		586032EA02EACD8F2A459445 /* wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58603B3B1B1827F17F65C440 /* wrapper.cpp */; };
+		58603330B753825A20E8A0CB /* brstm-main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58603905CF4BD20A36D55257 /* brstm-main.cpp */; };
+		58603590F8AB1FCA685FAA1F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 586032CF9DE76F3BBAA82757 /* .gitignore */; };
+		58603658BA18F6E4A8BBD004 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586032565F5D21F5434FD64A /* AudioManager.swift */; };
 		845C89F923DF2383008E78B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C89F823DF2383008E78B8 /* AppDelegate.swift */; };
 		845C89FB23DF2383008E78B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C89FA23DF2383008E78B8 /* ViewController.swift */; };
 		845C89FD23DF2383008E78B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845C89FC23DF2383008E78B8 /* Assets.xcassets */; };
 		845C8A0023DF2383008E78B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845C89FE23DF2383008E78B8 /* Main.storyboard */; };
+		845C8A0D23DF24DB008E78B8 /* brstm.h in Sources */ = {isa = PBXBuildFile; fileRef = 845C8A0B23DF24DB008E78B8 /* brstm.h */; };
+		845C8A1023DF3C15008E78B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845C8A0F23DF3C15008E78B8 /* AVFoundation.framework */; };
+		845C8A1323DF489D008E78B8 /* libbrstmcpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 845C8A1123DF465F008E78B8 /* libbrstmcpp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		586032565F5D21F5434FD64A /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		586032CF9DE76F3BBAA82757 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		58603905CF4BD20A36D55257 /* brstm-main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "brstm-main.cpp"; sourceTree = "<group>"; };
+		58603B3B1B1827F17F65C440 /* wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrapper.cpp; sourceTree = "<group>"; };
 		845C89F523DF2383008E78B8 /* brstm-player-gui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brstm-player-gui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		845C89F823DF2383008E78B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845C89FA23DF2383008E78B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		845C89FC23DF2383008E78B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		845C89FF23DF2383008E78B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		845C8A0123DF2383008E78B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		845C8A0A23DF24DB008E78B8 /* brstm-player-gui-Bridging-Header.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "brstm-player-gui-Bridging-Header.hpp"; sourceTree = "<group>"; };
+		845C8A0B23DF24DB008E78B8 /* brstm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brstm.h; sourceTree = "<group>"; };
+		845C8A0F23DF3C15008E78B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		845C8A1123DF465F008E78B8 /* libbrstmcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbrstmcpp.a; path = "brstm-player-gui/libbrstmcpp.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845C8A1323DF489D008E78B8 /* libbrstmcpp.a in Frameworks */,
+				845C8A1023DF3C15008E78B8 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +55,8 @@
 			children = (
 				845C89F723DF2383008E78B8 /* brstm-player-gui */,
 				845C89F623DF2383008E78B8 /* Products */,
+				845C8A0E23DF3C15008E78B8 /* Frameworks */,
+				586032CF9DE76F3BBAA82757 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,13 +71,27 @@
 		845C89F723DF2383008E78B8 /* brstm-player-gui */ = {
 			isa = PBXGroup;
 			children = (
+				845C8A0B23DF24DB008E78B8 /* brstm.h */,
 				845C89F823DF2383008E78B8 /* AppDelegate.swift */,
 				845C89FA23DF2383008E78B8 /* ViewController.swift */,
 				845C89FC23DF2383008E78B8 /* Assets.xcassets */,
 				845C89FE23DF2383008E78B8 /* Main.storyboard */,
 				845C8A0123DF2383008E78B8 /* Info.plist */,
+				845C8A0A23DF24DB008E78B8 /* brstm-player-gui-Bridging-Header.hpp */,
+				58603905CF4BD20A36D55257 /* brstm-main.cpp */,
+				58603B3B1B1827F17F65C440 /* wrapper.cpp */,
+				586032565F5D21F5434FD64A /* AudioManager.swift */,
 			);
 			path = "brstm-player-gui";
+			sourceTree = "<group>";
+		};
+		845C8A0E23DF3C15008E78B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				845C8A1123DF465F008E78B8 /* libbrstmcpp.a */,
+				845C8A0F23DF3C15008E78B8 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +127,7 @@
 					845C89F423DF2383008E78B8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = N6M3GGC92B;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -123,6 +157,7 @@
 			files = (
 				845C89FD23DF2383008E78B8 /* Assets.xcassets in Resources */,
 				845C8A0023DF2383008E78B8 /* Main.storyboard in Resources */,
+				58603590F8AB1FCA685FAA1F /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,8 +168,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845C8A0D23DF24DB008E78B8 /* brstm.h in Sources */,
 				845C89FB23DF2383008E78B8 /* ViewController.swift in Sources */,
 				845C89F923DF2383008E78B8 /* AppDelegate.swift in Sources */,
+				58603330B753825A20E8A0CB /* brstm-main.cpp in Sources */,
+				586032EA02EACD8F2A459445 /* wrapper.cpp in Sources */,
+				58603658BA18F6E4A8BBD004 /* AudioManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,12 +285,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = N6M3GGC92B;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "brstm-player-gui/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/brstm-player-gui",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "space.freeappsw.brstm-player-gui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "brstm-player-gui/brstm-player-gui-Bridging-Header.hpp";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -260,12 +307,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = N6M3GGC92B;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "brstm-player-gui/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/brstm-player-gui",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "space.freeappsw.brstm-player-gui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "brstm-player-gui/brstm-player-gui-Bridging-Header.hpp";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -289,6 +343,7 @@
 				845C8A0623DF2383008E78B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
