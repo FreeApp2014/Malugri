@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		586032825D3D281F9C571F23 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 58603DAC8B57A07CA650039B /* README.md */; };
 		586032EA02EACD8F2A459445 /* wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58603B3B1B1827F17F65C440 /* wrapper.cpp */; };
 		58603330B753825A20E8A0CB /* brstm-main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58603905CF4BD20A36D55257 /* brstm-main.cpp */; };
 		58603590F8AB1FCA685FAA1F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 586032CF9DE76F3BBAA82757 /* .gitignore */; };
@@ -25,6 +26,7 @@
 		586032CF9DE76F3BBAA82757 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		58603905CF4BD20A36D55257 /* brstm-main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "brstm-main.cpp"; sourceTree = "<group>"; };
 		58603B3B1B1827F17F65C440 /* wrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrapper.cpp; sourceTree = "<group>"; };
+		58603DAC8B57A07CA650039B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		845C89F523DF2383008E78B8 /* brstm-player-gui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brstm-player-gui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		845C89F823DF2383008E78B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845C89FA23DF2383008E78B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				845C89F623DF2383008E78B8 /* Products */,
 				845C8A0E23DF3C15008E78B8 /* Frameworks */,
 				586032CF9DE76F3BBAA82757 /* .gitignore */,
+				58603DAC8B57A07CA650039B /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,6 +177,7 @@
 				58603330B753825A20E8A0CB /* brstm-main.cpp in Sources */,
 				586032EA02EACD8F2A459445 /* wrapper.cpp in Sources */,
 				58603658BA18F6E4A8BBD004 /* AudioManager.swift in Sources */,
+				586032825D3D281F9C571F23 /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

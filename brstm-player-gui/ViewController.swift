@@ -35,20 +35,20 @@ class ViewController: NSViewController {
 
     func createAudioBuffer() -> AVAudioPCMBuffer {
         let channelCount = gHEAD3_num_channels();
-        format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gaHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)
-        var buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gawritten_samples()));
-        buffer.frameLength = AVAudioFrameCount(gawritten_samples())
-        let samples16 = gaPCM_samples();
+        format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)
+        var buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gwritten_samples()));
+        buffer.frameLength = AVAudioFrameCount(gwritten_samples())
+        let samples16 = gPCM_samples();
         let samples32 =  UnsafeMutablePointer<UnsafeMutablePointer<Float32>>.allocate(capacity: Int(channelCount));
         var i: Int = 0;
         while (UInt32(i) < channelCount){
-            samples32[i] = UnsafeMutablePointer<Float32>.allocate(capacity: Int(gawritten_samples()));
+            samples32[i] = UnsafeMutablePointer<Float32>.allocate(capacity: Int(gwritten_samples()));
             i+=1;
         }
         i = 0;
         var j: Int = 0;
         while (UInt32(j) < channelCount){
-            while (UInt(i) < gawritten_samples()/UInt(channelCount)) {
+            while (UInt(i) < gwritten_samples()/UInt(channelCount)) {
                 samples32[j][i] = Float32(Float32(samples16![j]![i]) / Float32(32768));
                 buffer.floatChannelData![j][i] = samples32[j][i];
                 i += 1;
@@ -74,7 +74,9 @@ class ViewController: NSViewController {
                 readFile(path: path);
                 let buffer = createAudioBuffer();
                 let am = AudioManager();
-                am.playToEnd(buffer: buffer, format: format);
+                //let ptr: UnsafeMutablePointer<AVAudioPCMBuffer> = UnsafeMutablePointer<AVAudioPCMBuffer>.allocate(capacity: 1);
+                //ptr.pointee = buffer;
+                am.playBuffer(buffer: buffer, format: format);
             }
         }
 
