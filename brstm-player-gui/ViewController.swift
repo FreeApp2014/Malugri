@@ -39,18 +39,12 @@ class ViewController: NSViewController {
         var buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gwritten_samples()));
         buffer.frameLength = AVAudioFrameCount(gwritten_samples())
         let samples16 = gPCM_samples();
-        let samples32 =  UnsafeMutablePointer<UnsafeMutablePointer<Float32>>.allocate(capacity: Int(channelCount));
         var i: Int = 0;
-        while (UInt32(i) < channelCount){
-            samples32[i] = UnsafeMutablePointer<Float32>.allocate(capacity: Int(gwritten_samples()));
-            i+=1;
-        }
         i = 0;
         var j: Int = 0;
         while (UInt32(j) < channelCount){
             while (UInt(i) < gwritten_samples()/UInt(channelCount)) {
-                samples32[j][i] = Float32(Float32(samples16![j]![i]) / Float32(32768));
-                buffer.floatChannelData![j][i] = samples32[j][i];
+                buffer.floatChannelData![j][i] =  Float32(Float32(samples16![j]![i]) / Float32(32768));
                 i += 1;
             }
             i = 0;
