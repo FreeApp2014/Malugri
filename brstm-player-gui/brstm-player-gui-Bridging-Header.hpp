@@ -5,9 +5,13 @@
 #import <stdint.h>
 
 unsigned char readABrstm(const unsigned char* fileData, unsigned char debugLevel, bool decodeADPCM);
-unsigned long gawritten_samples();
-unsigned long gaHEAD1_sample_rate();
+unsigned long gwritten_samples();
+unsigned long gHEAD1_sample_rate();
 unsigned int  gHEAD3_num_channels();
 unsigned long gHEAD1_loop_start();
-int16_t** gaPCM_samples();
+unsigned long gHEAD1_blocks_samples();
+int16_t** gPCM_samples();
+int16_t** gPCM_buffer();
+int16_t**  getBufferBlock(const unsigned char* fileData, unsigned long sampleOffset);
+void closeBrstm();
 

@@ -11,9 +11,6 @@ unsigned int  HEAD1_codec; //char
 unsigned int  HEAD1_loop;  //char
 unsigned int  HEAD1_num_channels; //char
 unsigned int  HEAD1_sample_rate;
-extern "C" unsigned long  gaHEAD1_sample_rate(){
-    return HEAD1_sample_rate;
-};
 unsigned long HEAD1_loop_start;
 unsigned long HEAD1_total_samples;
 unsigned long HEAD1_ADPCM_offset;
@@ -47,7 +44,12 @@ unsigned long written_samples=0;
 
 #include "brstm.h"
 
+
 //Getters for outer world access
+
+extern "C" unsigned long  gHEAD1_sample_rate(){
+    return HEAD1_sample_rate;
+};
 extern "C" unsigned long gHEAD1_loop_start(){
     return HEAD1_loop_start;
 }
@@ -55,14 +57,25 @@ extern "C" unsigned char readABrstm (const unsigned char* fileData, unsigned cha
 {
     return readBrstm(fileData, debugLevel, decodeADPCM);
 }
-extern "C" unsigned long gawritten_samples(){
+extern "C" unsigned long gwritten_samples(){
     return written_samples;
 };
-extern "C" int16_t** gaPCM_samples(){
+extern "C" int16_t** gPCM_samples(){
     return PCM_samples;
 }
 extern "C" unsigned int  gHEAD3_num_channels(){
     return HEAD3_num_channels;
 }
-
-
+extern "C" unsigned long gHEAD1_blocks_samples(){
+    return HEAD1_blocks_samples;
+}
+extern "C" int16_t** gPCM_buffer(){
+    return PCM_buffer;
+}
+extern "C" int16_t**  getBufferBlock(const unsigned char* fileData, unsigned long sampleOffset){
+    brstm_getbuffer(fileData, sampleOffset, HEAD1_blocks_samples, true);
+    return PCM_buffer;
+}
+extern "C" void closeBrstm(){
+    brstm_close();
+}
