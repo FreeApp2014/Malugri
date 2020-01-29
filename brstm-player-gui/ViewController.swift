@@ -30,48 +30,34 @@ class ViewController: NSViewController {
         return file.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
             let rawPtr = u8Ptr;
             readABrstm(rawPtr, 1, decode);
-            return rawPtr
+            let channelCount = gHEAD3_num_channels();
+            format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)
+            return rawPtr;
         }
     }
 
-    func addBlocksToBuffer(fileData: UnsafePointer<UInt8>, blockCount: Int, buffer: UnsafeMutablePointer<AVAudioPCMBuffer>, offset: Int) -> Void {
-        var e = 0;
-        var off = offset;
+    func getBlockBuffer(fileData: UnsafePointer<UInt8>, offset: Int) -> AVAudioPCMBuffer {
         let channelCount = gHEAD3_num_channels();
-        let samples32 =  UnsafeMutablePointer<UnsafeMutablePointer<Float32>>.allocate(capacity: Int(channelCount));
-        var i = 0;
-        while (UInt32(i) < channelCount){
-            samples32[i] = UnsafeMutablePointer<Float32>.allocate(capacity: Int(gwritten_samples()));
-            i+=1;
-        }
-        while (e < blockCount){
-            let samples16 = getBufferBlock(fileData, UInt(off));
-            var i: Int;
-            i = Int(off);
-            var j: Int = 0;
-            while (UInt32(j) < channelCount){
-                while (UInt(i) < gHEAD1_blocks_samples()/UInt(channelCount)) {
-                    samples32[j][i] = Float32(Float32(samples16![j]![i]) / Float32(32768));
-                    buffer.pointee.floatChannelData![j][i] = samples32[j][i];
-                    i += 1;
-                }
-                i = Int(off);
-                j += 1;
-            };
-            off += Int(gHEAD1_blocks_samples());
-            e += 1;
-        }
+        let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gHEAD1_blocks_samples()));
+        buffer.frameLength = AVAudioFrameCount(gHEAD1_blocks_samples());
+        let samples16 = getBufferBlock(fileData, UInt(offset));
+        var i: Int;
+        i = Int(offset);
+        var j: Int = 0;
+        while (UInt32(j) < channelCount){
+            while (UInt(i) < gHEAD1_blocks_samples()/UInt(channelCount)) {
+                print(i,j,Float32(Float32(samples16![j]![i]) / Float32(32768)));
+                buffer.floatChannelData![j][i] = Float32(Float32(samples16![j]![i]) / Float32(32768));
+                i += 1;
+            }
+            j += 1;
+            i = Int(offset);
+        };
+        return buffer;
     }
 
     func createAudioBuffer(fileData: UnsafePointer<UInt8>) -> AVAudioPCMBuffer {
-        let channelCount = gHEAD3_num_channels();
-        format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)
-        var buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gwritten_samples()));
-        buffer.frameLength = AVAudioFrameCount(gwritten_samples());
-        let ptr: UnsafeMutablePointer<AVAudioPCMBuffer> = UnsafeMutablePointer<AVAudioPCMBuffer>.allocate(capacity: 1);
-        ptr.pointee = buffer;
-        addBlocksToBuffer(fileData: fileData, blockCount: 10, buffer: ptr, offset: 0);
-        return buffer;
+        return getBlockBuffer(fileData: fileData, offset: 0);
     }
 
 
@@ -85,12 +71,12 @@ class ViewController: NSViewController {
             if (fileUri != nil){
                 let path = fileUri!.path;
                 let data = readFile(path: path, decode: false);
-                let buffer = createAudioBuffer(fileData: data);
+                let buffer = getBlockBuffer(fileData: data, offset: 0);
                 let am = AudioManager();
-                let ptr: UnsafeMutablePointer<AVAudioPCMBuffer> = UnsafeMutablePointer<AVAudioPCMBuffer>.allocate(capacity: 1);
-                ptr.pointee = buffer;
-                am.playBuffer(buffer: ptr, format: format);
-
+                am.addBufferToQueue(buffer: buffer);
+                am.playBuffer(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples())), format: format);
+                //am.addBufferToQueue(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples()*2)));
+                //am.addBufferToQueue(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples()*3)));
             }
         }
 

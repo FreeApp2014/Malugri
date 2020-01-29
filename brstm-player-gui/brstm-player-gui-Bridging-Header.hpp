@@ -14,4 +14,4 @@ int16_t** gPCM_samples();
 int16_t** gPCM_buffer();
 int16_t**  getBufferBlock(const unsigned char* fileData, unsigned long sampleOffset);
 void closeBrstm();
-
+unsigned long gHEAD1_total_samples();
