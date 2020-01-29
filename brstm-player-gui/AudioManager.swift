@@ -22,22 +22,24 @@ class AudioManager:NSObject {
         return engine
     }()
     //TODO: Looping and on demand decoding
-    func playBuffer(buffer: AVAudioPCMBuffer, format: AVAudioFormat) -> Void{
-        print(format, buffer);
+    func initialize(format: AVAudioFormat) {
         do {
-            audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: format);
-            try audioEngine.start();
+            print(format);
+            self.audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: format);
+            try self.audioEngine.start();
         } catch {
             let alert = NSAlert();
             alert.messageText = "Failed to start audio engine";
             alert.alertStyle = .critical;
             alert.runModal();
         }
+    }
+    func playBuffer(buffer: AVAudioPCMBuffer) -> Void{
         let newThread = DispatchQueue.global(qos: .userInitiated);
         newThread.async{
             self.audioPlayerNode.play();
             self.audioPlayerNode.scheduleBuffer(buffer);
-            Thread.sleep(forTimeInterval: Double(Int(gwritten_samples()/2) * Int(gHEAD1_sample_rate())));
+            Thread.sleep(forTimeInterval: Double(gwritten_samples()/2) / Double(gHEAD1_sample_rate()));
             self.audioPlayerNode.reset();
             self.audioEngine.reset();
             closeBrstm();
