@@ -46,7 +46,7 @@ class ViewController: NSViewController {
         var j: Int = 0;
         while (UInt32(j) < channelCount){
             while (UInt(i) < gHEAD1_blocks_samples()/UInt(channelCount)) {
-                print(i,j,Float32(Float32(samples16![j]![i]) / Float32(32768)));
+                //print(i,j,Float32(Float32(samples16![j]![i]) / Float32(32768)));
                 buffer.floatChannelData![j][i] = Float32(Float32(samples16![j]![i]) / Float32(32768));
                 i += 1;
             }
@@ -71,12 +71,17 @@ class ViewController: NSViewController {
             if (fileUri != nil){
                 let path = fileUri!.path;
                 let data = readFile(path: path, decode: false);
-                let buffer = getBlockBuffer(fileData: data, offset: 0);
                 let am = AudioManager();
-                am.addBufferToQueue(buffer: buffer);
-                am.playBuffer(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples())), format: format);
-                //am.addBufferToQueue(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples()*2)));
-                //am.addBufferToQueue(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples()*3)));
+                am.initialize(format: format);
+                am.playBuffer(buffer: getBlockBuffer(fileData: data, offset: 0));
+                var i = 3;
+                while (UInt(i) < gHEAD1_total_samples()/gHEAD1_blocks_samples()){
+                    am.playBuffer(buffer: getBlockBuffer(fileData: data, offset: Int(gHEAD1_blocks_samples()*UInt(i))));
+                    Thread.sleep(forTimeInterval: Double(Int(gHEAD1_blocks_samples()) / Int(gHEAD1_sample_rate())));
+                    i+=1
+                }
+                //
+                //a;
             }
         }
 

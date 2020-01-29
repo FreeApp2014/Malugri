@@ -21,30 +21,40 @@ class AudioManager:NSObject {
 
         return engine
     }()
-    //TODO: Looping and on demand decoding
-    func playBuffer(buffer: AVAudioPCMBuffer, format: AVAudioFormat) -> Void{
-        print(format, buffer);
+    let newThread = DispatchQueue.global(qos: .userInitiated);
+    func initialize(format: AVAudioFormat) {
         do {
-            audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: format);
-            try audioEngine.start();
+            print(format);
+            self.audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: format);
+            try self.audioEngine.start();
         } catch {
             let alert = NSAlert();
             alert.messageText = "Failed to start audio engine";
             alert.alertStyle = .critical;
             alert.runModal();
         }
-        let newThread = DispatchQueue.global(qos: .userInitiated);
+    }
+
+    //TODO: Looping and on demand decoding
+    func playBuffer(buffer: AVAudioPCMBuffer) -> Void{
+        print(buffer);
         newThread.async{
             self.audioPlayerNode.play();
             self.audioPlayerNode.scheduleBuffer(buffer);
-            Thread.sleep(forTimeInterval: Double(Int(gwritten_samples()/2) * Int(gHEAD1_sample_rate())));
-            self.audioPlayerNode.reset();
-            self.audioEngine.reset();
-            closeBrstm();
+            Thread.sleep(forTimeInterval: Double(Int(gHEAD1_blocks_samples()) * Int(gHEAD1_sample_rate())));
+            //self.audioPlayerNode.reset();
+            //self.audioEngine.reset();
+            //closeBrstm();
         };
     }
     func addBufferToQueue(buffer: AVAudioPCMBuffer){
-        self.audioPlayerNode.scheduleBuffer(buffer);
-        print(buffer);
+        let newThread = DispatchQueue.global(qos: .userInitiated);
+        newThread.async{
+            self.audioPlayerNode.scheduleBuffer(buffer);
+            //self.audioPlayerNode.play();
+            Thread.sleep(forTimeInterval: Double(Int(gHEAD1_blocks_samples()) / Int(gHEAD1_sample_rate())));
+            //self.audioPlayerNode.reset();
+            print(buffer);
+        }
     }
 }
