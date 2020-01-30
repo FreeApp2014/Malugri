@@ -299,6 +299,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/brstm-player-gui",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "space.freeappsw.brstm-player-gui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "brstm-player-gui/brstm-player-gui-Bridging-Header.hpp";
@@ -321,6 +322,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/brstm-player-gui",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "space.freeappsw.brstm-player-gui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "brstm-player-gui/brstm-player-gui-Bridging-Header.hpp";

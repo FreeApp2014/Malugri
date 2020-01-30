@@ -68,8 +68,6 @@ class ViewController: NSViewController {
                 readFile(path: path);
                 let buffer = createAudioBuffer();
                 let am = AudioManager();
-                //let ptr: UnsafeMutablePointer<AVAudioPCMBuffer> = UnsafeMutablePointer<AVAudioPCMBuffer>.allocate(capacity: 1);
-                //ptr.pointee = buffer;
                 am.initialize(format: format);
                 am.playBuffer(buffer: buffer);
             }
