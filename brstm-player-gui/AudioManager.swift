@@ -22,7 +22,7 @@ class AudioManager:NSObject {
         return engine
     }()
     //TODO: Looping and on demand decoding
-    func initialize(format: AVAudioFormat) {
+    func initialize(format: AVAudioFormat) -> Void {
         do {
             print(format);
             self.audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: format);
@@ -34,7 +34,7 @@ class AudioManager:NSObject {
             alert.runModal();
         }
     }
-    func playBuffer(buffer: AVAudioPCMBuffer) -> Void{
+    func playBuffer(buffer: AVAudioPCMBuffer) -> Void {
         let newThread = DispatchQueue.global(qos: .userInitiated);
         newThread.async{
             self.audioPlayerNode.play();
@@ -44,5 +44,20 @@ class AudioManager:NSObject {
             self.audioEngine.reset();
             closeBrstm();
         };
+    }
+    func state() -> Bool {
+        return self.audioPlayerNode.isPlaying;
+    }
+    func resume() -> Void {
+        self.audioPlayerNode.play();
+    }
+    func pause() -> Void {
+        self.audioPlayerNode.pause();
+    }
+    func stop() -> Void {
+        self.audioPlayerNode.stop();
+        self.audioPlayerNode.reset();
+        self.audioEngine.reset();
+        closeBrstm();
     }
 }

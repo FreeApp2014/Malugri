@@ -36,7 +36,7 @@ class ViewController: NSViewController {
     func createAudioBuffer() -> AVAudioPCMBuffer {
         let channelCount = gHEAD3_num_channels();
         format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)
-        var buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gwritten_samples()));
+        let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gwritten_samples()));
         buffer.frameLength = AVAudioFrameCount(gwritten_samples())
         let samples16 = gPCM_samples();
         var i: Int = 0;
@@ -55,7 +55,11 @@ class ViewController: NSViewController {
         return buffer;
     }
 
-
+    @IBOutlet weak var filenameLabel: NSTextField!
+    @IBOutlet weak var playPause: NSButton!
+    @IBOutlet weak var stop: NSButton!
+    let am = AudioManager();
+    
     @IBAction func pressBtn(_ sender: AnyObject) {
         let filePicker = NSOpenPanel();
         filePicker.allowsMultipleSelection = false;
@@ -66,13 +70,31 @@ class ViewController: NSViewController {
             if (fileUri != nil){
                 let path = fileUri!.path;
                 readFile(path: path);
+                self.filenameLabel.stringValue = path;
+                self.playPause.title = "Pause";
+                self.stop.isEnabled = true;
+                self.playPause.isEnabled = true;
                 let buffer = createAudioBuffer();
-                let am = AudioManager();
                 am.initialize(format: format);
                 am.playBuffer(buffer: buffer);
             }
         }
 
+    }
+    @IBAction func pressStop(_ sender: AnyObject) {
+        am.stop();
+        self.playPause.title = "Play";
+        self.playPause.isEnabled = false;
+        self.stop.isEnabled = false;
+    }
+    @IBAction func PlayPausePress(_ sender: AnyObject) {
+        if (am.state()){
+            am.pause();
+            self.playPause.title = "Play";
+        } else {
+            am.resume();
+            self.playPause.title = "Pause";
+        }
     }
 
 }
