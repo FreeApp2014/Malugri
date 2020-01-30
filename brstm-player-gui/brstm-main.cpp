@@ -79,3 +79,9 @@ extern "C" int16_t**  getBufferBlock(const unsigned char* fileData, unsigned lon
 extern "C" void closeBrstm(){
     brstm_close();
 }
+extern "C" unsigned long gHEAD1_total_samples(){
+    return HEAD1_total_samples;
+}
+extern "C" unsigned int  gHEAD1_loop(){
+    return HEAD1_loop;
+}

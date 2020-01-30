@@ -35,20 +35,27 @@ class AudioManager:NSObject {
             alert.runModal();
         }
     }
+    var needsLoop = true;
     func playBuffer(buffer: AVAudioPCMBuffer) -> Void {
+        needsLoop = true;
         let newThread = DispatchQueue.global(qos: .userInitiated);
         newThread.async{
             self.needsToPlay = true;
             self.audioPlayerNode.play();
             self.audioPlayerNode.scheduleBuffer(buffer, completionHandler: {
-                self.needsToPlay = false;
+                //self.needsToPlay = false;
             });
             while (self.needsToPlay){
-                //do nothing to block the thread
+                Thread.sleep(forTimeInterval: 0.1);
             };
+            print("A");
             self.audioPlayerNode.reset();
             self.audioEngine.reset();
-            closeBrstm();
+            if (self.needsLoop){
+                self.playBuffer(buffer: createAudioBuffer(offset: Int(gHEAD1_loop_start()), needToInitFormat: false))
+            } else {
+                closeBrstm()
+            }
         };
     }
     func state() -> Bool {
@@ -62,6 +69,10 @@ class AudioManager:NSObject {
     }
     func pause() -> Void {
         self.audioPlayerNode.pause();
+    }
+    func stopBtn() -> Void {
+        needsLoop = false;
+        stop();
     }
     func stop() -> Void {
         self.needsToPlay = false;

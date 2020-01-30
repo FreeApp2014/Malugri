@@ -12,6 +12,29 @@ import AVFoundation
 
 var format: AVAudioFormat = AVAudioFormat();
 
+func createAudioBuffer(offset: Int, needToInitFormat: Bool) -> AVAudioPCMBuffer {
+    let channelCount = gHEAD3_num_channels();
+    if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false);}
+    let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32((Int(gwritten_samples()) - offset)));
+    buffer.frameLength = AVAudioFrameCount(UInt32(Int(gwritten_samples()) - offset))
+    let samples16 = gPCM_samples();
+    var i: Int = 0;
+    i = 0;
+    var j: Int = 0;
+    while (UInt32(j) < channelCount){
+        while (UInt(i) < UInt((Int(gwritten_samples()) - offset))/UInt(channelCount)) {
+            buffer.floatChannelData![j][i] =  Float32(Float32(samples16![j]![i+offset]) / Float32(32768));
+            i += 1;
+        }
+        i = 0;
+        j += 1;
+    };
+    print(i);
+    i = 0;
+    return buffer;
+}
+
+
 class ViewController: NSViewController {
 
     override func viewDidLoad() {
@@ -33,28 +56,6 @@ class ViewController: NSViewController {
         }
     }
 
-    func createAudioBuffer() -> AVAudioPCMBuffer {
-        let channelCount = gHEAD3_num_channels();
-        format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)
-        let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gwritten_samples()));
-        buffer.frameLength = AVAudioFrameCount(gwritten_samples())
-        let samples16 = gPCM_samples();
-        var i: Int = 0;
-        i = 0;
-        var j: Int = 0;
-        while (UInt32(j) < channelCount){
-            while (UInt(i) < gwritten_samples()/UInt(channelCount)) {
-                buffer.floatChannelData![j][i] =  Float32(Float32(samples16![j]![i]) / Float32(32768));
-                i += 1;
-            }
-            i = 0;
-            j += 1;
-        };
-        print(i);
-        i = 0;
-        return buffer;
-    }
-
     @IBOutlet weak var filenameLabel: NSTextField!
     @IBOutlet weak var playPause: NSButton!
     @IBOutlet weak var stop: NSButton!
@@ -74,24 +75,33 @@ class ViewController: NSViewController {
                 self.playPause.title = "Pause";
                 self.stop.isEnabled = true;
                 self.playPause.isEnabled = true;
-                let buffer = createAudioBuffer();
+                let buffer = createAudioBuffer(offset: 0, needToInitFormat: true);
                 am.initialize(format: format);
                 am.playBuffer(buffer: buffer);
                 let newThread = DispatchQueue.global(qos: .background);
-                self.progressBar.maxValue = floor(Double(gwritten_samples()) / (Double(gHEAD3_num_channels())*Double(gHEAD1_sample_rate())));
+                self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()) - 1);
                 print( self.progressBar.maxValue);
                 newThread.async{
-                    var i: Int = 0;
                     while (self.am.varPlay()){
                         if (self.am.state()) {
                             DispatchQueue.main.sync{
-                                self.progressBar.increment(by: 1.0);
+                                self.progressBar.increment(by: 2.0);
                             };
                         }
-                        if (self.progressBar.doubleValue ==  self.progressBar.maxValue){
-                            break;
+                        if (self.progressBar.doubleValue ==  self.progressBar.maxValue || self.progressBar.doubleValue ==  self.progressBar.maxValue + 1){
+                            if (gHEAD1_loop() == 1){
+                                Thread.sleep(forTimeInterval: 0.2);
+                                DispatchQueue.main.sync{
+                                    self.am.stop();
+                                    self.am.initialize(format: format);
+                                    self.progressBar.doubleValue = Double(gHEAD1_loop_start()) / Double(gHEAD1_sample_rate());
+                                };
+                            }
+                            else {
+                                break;
+                            };
                         }
-                        Thread.sleep(forTimeInterval: 1.0);
+                        Thread.sleep(forTimeInterval: 2.0);
                     }
                     DispatchQueue.main.sync{
                         self.progressBar.doubleValue = 0;
@@ -103,7 +113,7 @@ class ViewController: NSViewController {
     }
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBAction func pressStop(_ sender: AnyObject) {
-        am.stop();
+        am.stopBtn();
         self.playPause.title = "Play";
         self.playPause.isEnabled = false;
         self.filenameLabel.stringValue = "No file loaded";
