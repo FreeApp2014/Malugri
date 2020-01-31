@@ -8,6 +8,8 @@ import AVFoundation
 import Cocoa
 
 var needLoop = true;
+var loopBuffer: AVAudioPCMBuffer = AVAudioPCMBuffer();
+
 
 class AudioManager:NSObject {
 
@@ -22,6 +24,7 @@ class AudioManager:NSObject {
         return engine
     }()
     var needsToPlay: Bool = true;
+
     //TODO: Looping and on demand decoding
     func initialize(format: AVAudioFormat) -> Void {
         do {
@@ -36,6 +39,7 @@ class AudioManager:NSObject {
         }
     }
     var needsLoop = true;
+    var i: Double = 0;
     func playBuffer(buffer: AVAudioPCMBuffer) -> Void {
         needsLoop = true;
         let newThread = DispatchQueue.global(qos: .userInitiated);
@@ -43,19 +47,25 @@ class AudioManager:NSObject {
             self.needsToPlay = true;
             self.audioPlayerNode.play();
             self.audioPlayerNode.scheduleBuffer(buffer, completionHandler: {
-                //self.needsToPlay = false;
+                self.needsToPlay = false;
+                Thread.sleep(forTimeInterval: 0.005);
+                print("CH");
+                if (self.needsLoop){
+                    print("Loop");
+                    self.i = ceil(Double(gHEAD1_loop_start()) / Double(gHEAD1_sample_rate()));
+                    self.audioPlayerNode.reset();
+                    self.audioEngine.reset();
+                    self.initialize(format: format);
+                    self.playBuffer(buffer: loopBuffer);
+                } else {
+                    closeBrstm();
+                }
             });
             while (self.needsToPlay){
-                Thread.sleep(forTimeInterval: 0.1);
+                if (self.audioPlayerNode.isPlaying) {self.i += 0.005;}
+                Thread.sleep(forTimeInterval: 0.005);
             };
             print("A");
-            self.audioPlayerNode.reset();
-            self.audioEngine.reset();
-            if (self.needsLoop){
-                self.playBuffer(buffer: createAudioBuffer(offset: Int(gHEAD1_loop_start()), needToInitFormat: false))
-            } else {
-                closeBrstm()
-            }
         };
     }
     func state() -> Bool {
@@ -76,5 +86,10 @@ class AudioManager:NSObject {
     }
     func stop() -> Void {
         self.needsToPlay = false;
+        self.audioPlayerNode.reset();
+        self.audioEngine.reset();
+    }
+    func genPB(){
+        loopBuffer = createAudioBuffer(offset: Int(gHEAD1_loop_start()), needToInitFormat: false);
     }
 }

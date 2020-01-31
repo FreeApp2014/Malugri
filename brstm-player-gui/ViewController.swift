@@ -16,13 +16,13 @@ func createAudioBuffer(offset: Int, needToInitFormat: Bool) -> AVAudioPCMBuffer 
     let channelCount = gHEAD3_num_channels();
     if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false);}
     let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32((Int(gwritten_samples()) - offset)));
-    buffer.frameLength = AVAudioFrameCount(UInt32(Int(gwritten_samples()) - offset))
+    buffer.frameLength = AVAudioFrameCount(UInt32(Int(gHEAD1_total_samples()) - offset));
     let samples16 = gPCM_samples();
     var i: Int = 0;
     i = 0;
     var j: Int = 0;
     while (UInt32(j) < channelCount){
-        while (UInt(i) < UInt((Int(gwritten_samples()) - offset))/UInt(channelCount)) {
+        while (UInt(i) < UInt((Int(gHEAD1_total_samples()) - offset))) {
             buffer.floatChannelData![j][i] =  Float32(Float32(samples16![j]![i+offset]) / Float32(32768));
             i += 1;
         }
@@ -76,32 +76,21 @@ class ViewController: NSViewController {
                 self.stop.isEnabled = true;
                 self.playPause.isEnabled = true;
                 let buffer = createAudioBuffer(offset: 0, needToInitFormat: true);
+                am.genPB();
                 am.initialize(format: format);
                 am.playBuffer(buffer: buffer);
                 let newThread = DispatchQueue.global(qos: .background);
-                self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()) - 1);
+                self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()));
                 print( self.progressBar.maxValue);
+                var i: Double = 0;
                 newThread.async{
-                    while (self.am.varPlay()){
+                    while (self.am.varPlay() || self.am.needsLoop){
                         if (self.am.state()) {
                             DispatchQueue.main.sync{
-                                self.progressBar.increment(by: 2.0);
+                                self.progressBar.doubleValue = self.am.i;
                             };
                         }
-                        if (self.progressBar.doubleValue ==  self.progressBar.maxValue || self.progressBar.doubleValue ==  self.progressBar.maxValue + 1){
-                            if (gHEAD1_loop() == 1){
-                                Thread.sleep(forTimeInterval: 0.2);
-                                DispatchQueue.main.sync{
-                                    self.am.stop();
-                                    self.am.initialize(format: format);
-                                    self.progressBar.doubleValue = Double(gHEAD1_loop_start()) / Double(gHEAD1_sample_rate());
-                                };
-                            }
-                            else {
-                                break;
-                            };
-                        }
-                        Thread.sleep(forTimeInterval: 2.0);
+                        Thread.sleep(forTimeInterval: 0.25);
                     }
                     DispatchQueue.main.sync{
                         self.progressBar.doubleValue = 0;
@@ -118,6 +107,7 @@ class ViewController: NSViewController {
         self.playPause.isEnabled = false;
         self.filenameLabel.stringValue = "No file loaded";
         self.stop.isEnabled = false;
+        am.i = 0;
     }
     @IBAction func PlayPausePress(_ sender: AnyObject) {
         if (am.state()){
