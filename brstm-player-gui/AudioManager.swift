@@ -10,7 +10,6 @@ import Cocoa
 var needLoop = true;
 var loopBuffer: AVAudioPCMBuffer = AVAudioPCMBuffer();
 
-
 class AudioManager:NSObject {
 
     let audioPlayerNode = AVAudioPlayerNode()

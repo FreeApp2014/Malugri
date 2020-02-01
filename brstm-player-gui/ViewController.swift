@@ -39,13 +39,17 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(notify(_:)), name: Notification.Name("file"), object: nil)
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+
+    @objc func notify(_ sender: Notification) -> Void {
+        handleFile(path: sender.object! as! String);
     }
 
     func readFile(path: String) -> Void {
@@ -70,36 +74,41 @@ class ViewController: NSViewController {
             let fileUri = filePicker.url;
             if (fileUri != nil){
                 let path = fileUri!.path;
-                readFile(path: path);
-                self.filenameLabel.stringValue = path;
-                self.playPause.title = "Pause";
-                self.stop.isEnabled = true;
-                self.playPause.isEnabled = true;
-                let buffer = createAudioBuffer(offset: 0, needToInitFormat: true);
-                am.genPB();
-                am.initialize(format: format);
-                am.playBuffer(buffer: buffer);
-                let newThread = DispatchQueue.global(qos: .background);
-                self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()));
-                print( self.progressBar.maxValue);
-                var i: Double = 0;
-                newThread.async{
-                    while (self.am.varPlay() || self.am.needsLoop){
-                        if (self.am.state()) {
-                            DispatchQueue.main.sync{
-                                self.progressBar.doubleValue = self.am.i;
-                            };
-                        }
-                        Thread.sleep(forTimeInterval: 0.25);
-                    }
-                    DispatchQueue.main.sync{
-                        self.progressBar.doubleValue = 0;
-                        self.fileFinished();
-                    };
-                }
+                handleFile(path: path)
             }
         }
     }
+
+    func handleFile(path: String) {
+        readFile(path: path);
+        self.filenameLabel.stringValue = path;
+        self.playPause.title = "Pause";
+        self.stop.isEnabled = true;
+        self.playPause.isEnabled = true;
+        let buffer = createAudioBuffer(offset: 0, needToInitFormat: true);
+        am.genPB();
+        am.initialize(format: format);
+        am.playBuffer(buffer: buffer);
+        let newThread = DispatchQueue.global(qos: .background);
+        self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()));
+        print( self.progressBar.maxValue);
+        var i: Double = 0;
+        newThread.async{
+            while (self.am.varPlay() || self.am.needsLoop){
+                if (self.am.state()) {
+                    DispatchQueue.main.sync{
+                        self.progressBar.doubleValue = self.am.i;
+                    };
+                }
+                Thread.sleep(forTimeInterval: 0.25);
+            }
+            DispatchQueue.main.sync{
+                self.progressBar.doubleValue = 0;
+                self.fileFinished();
+            };
+        }
+    }
+
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBAction func pressStop(_ sender: AnyObject) {
         am.stopBtn();

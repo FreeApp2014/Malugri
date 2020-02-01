@@ -25,5 +25,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true;
     }
 
+    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("file"), object: filename);
+        return true;
+    }
 }
 
