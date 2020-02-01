@@ -81,6 +81,12 @@ class ViewController: NSViewController {
 
     func handleFile(path: String) {
         readFile(path: path);
+        if(am.wasUsed){
+            self.pressStop(self.stop);
+            print("a");
+            self.am.i = 0;
+            Thread.sleep(forTimeInterval: 0.05);
+        }
         self.filenameLabel.stringValue = path;
         self.playPause.title = "Pause";
         self.stop.isEnabled = true;
