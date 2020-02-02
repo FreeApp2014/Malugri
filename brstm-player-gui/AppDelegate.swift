@@ -25,6 +25,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true;
     }
 
+    @IBAction func fileOpenClick(_ sender: AnyObject) {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("opener"), object: nil);
+    }
+
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("file"), object: filename);

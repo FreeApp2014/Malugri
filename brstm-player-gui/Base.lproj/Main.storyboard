@@ -54,6 +54,65 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="File" id="FWA-Dz-2GC">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="2Fl-ma-oNn">
+                                    <items>
+                                        <menuItem title="Open…" keyEquivalent="o" id="Umy-FM-TRe">
+                                            <connections>
+                                                <action selector="fileOpenClick:" target="Voe-Tx-rLC" id="4Vq-zK-Tt0"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="rC5-2f-gjh"/>
+                                        <menuItem title="Close" keyEquivalent="w" id="Udk-Ab-YKk">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="Ylr-TH-hSN"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="a6t-8E-eZH">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="PCM-yv-33M">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="0Cq-iX-aDq">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="6A4-Sh-emS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="Hb5-IL-dXJ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="DJk-ZN-gu5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="MdY-fX-rgC"/>
+                                        <menuItem title="Bring All to Front" id="NOC-kW-K3Q">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="Tl5-Pj-ECg"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Support" id="tcl-uX-tUx">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Support" systemMenu="help" id="752-hk-Qdu">
+                                    <items>
+                                        <menuItem title="Report Bugs" keyEquivalent="b" id="Icz-bZ-Xu2">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="GitHub" id="fuD-Qb-WCL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Discord" keyEquivalent="d" id="Bz1-gP-4xh">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                         </items>
                     </menu>
                     <connections>
@@ -89,11 +148,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="brstm_player_gui" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="75"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Unv-6H-qpL">
-                                <rect key="frame" x="6" y="63" width="73" height="32"/>
+                                <rect key="frame" x="6" y="38" width="73" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lN2-0n-Zxp">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -115,7 +174,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ac-Gy-uj5">
-                                <rect key="frame" x="79" y="72" width="396" height="17"/>
+                                <rect key="frame" x="79" y="47" width="396" height="17"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No file loaded" id="XnZ-3S-F1y">
                                     <font key="font" metaFont="system"/>
@@ -149,7 +208,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="570"/>
+            <point key="canvasLocation" x="75" y="557.5"/>
         </scene>
     </scenes>
 </document>

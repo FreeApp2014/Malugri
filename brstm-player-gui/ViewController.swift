@@ -39,7 +39,8 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(notify(_:)), name: Notification.Name("file"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(notify(_:)), name: Notification.Name("file"), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(opener(_:)), name: Notification.Name("opener"), object: nil);
     }
 
     override var representedObject: Any? {
@@ -50,6 +51,10 @@ class ViewController: NSViewController {
 
     @objc func notify(_ sender: Notification) -> Void {
         handleFile(path: sender.object! as! String);
+    }
+
+    @objc func opener(_ sender: Notification) -> Void {
+        pressBtn(self.stop);
     }
 
     func readFile(path: String) -> Void {
