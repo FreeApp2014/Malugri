@@ -54,9 +54,9 @@ class AudioManager:NSObject {
                 if (self.needsLoop){
                     print("Loop");
                     self.i = ceil(Double(gHEAD1_loop_start()) / Double(gHEAD1_sample_rate()));
-                    self.audioPlayerNode.reset();
-                    self.audioEngine.reset();
-                    self.initialize(format: format);
+                    //self.audioPlayerNode.reset();
+                    //self.audioEngine.reset();
+                    //self.initialize(format: format);
                     self.playBuffer(buffer: loopBuffer);
                 } else {
                     closeBrstm();

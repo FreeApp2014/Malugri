@@ -13,17 +13,17 @@ import AVFoundation
 var format: AVAudioFormat = AVAudioFormat();
 
 func createAudioBuffer(offset: Int, needToInitFormat: Bool) -> AVAudioPCMBuffer {
-    let channelCount = gHEAD3_num_channels();
-    if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false);}
+    let channelCount = (gHEAD3_num_channels() > 2 ? 2 : gHEAD3_num_channels());
+    if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)!;}
     let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32((Int(gwritten_samples()) - offset)));
-    buffer.frameLength = AVAudioFrameCount(UInt32(Int(gHEAD1_total_samples()) - offset));
+    buffer!.frameLength = AVAudioFrameCount(UInt32(Int(gHEAD1_total_samples()) - offset));
     let samples16 = gPCM_samples();
     var i: Int = 0;
     i = 0;
     var j: Int = 0;
     while (UInt32(j) < channelCount){
         while (UInt(i) < UInt((Int(gHEAD1_total_samples()) - offset))) {
-            buffer.floatChannelData![j][i] =  Float32(Float32(samples16![j]![i+offset]) / Float32(32768));
+            buffer?.floatChannelData![j][i] =  Float32(Float32(samples16![j]![i+offset]) / Float32(32768));
             i += 1;
         }
         i = 0;
@@ -31,7 +31,7 @@ func createAudioBuffer(offset: Int, needToInitFormat: Bool) -> AVAudioPCMBuffer 
     };
     print(i);
     i = 0;
-    return buffer;
+    return buffer!;
 }
 
 
@@ -75,7 +75,7 @@ class ViewController: NSViewController {
         filePicker.allowsMultipleSelection = false;
         filePicker.allowedFileTypes = ["brstm"];
         filePicker.allowsOtherFileTypes = false;
-        if (filePicker.runModal() == NSModalResponseOK){
+        if (filePicker.runModal() == NSApplication.ModalResponse.OK){
             let fileUri = filePicker.url;
             if (fileUri != nil){
                 let path = fileUri!.path;
