@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <fstream>
 
 //brstm stuff
 
@@ -40,6 +40,8 @@ int16_t* PCM_buffer[16]; //unused in this program
 
 unsigned long written_samples=0;
 
+
+
 //TODO: add getters for more vars to make everything work
 
 #include "brstm.h"
@@ -72,8 +74,11 @@ extern "C" unsigned long gHEAD1_blocks_samples(){
 extern "C" int16_t** gPCM_buffer(){
     return PCM_buffer;
 }
-extern "C" int16_t**  getBufferBlock(const unsigned char* fileData, unsigned long sampleOffset){
-    brstm_getbuffer(fileData, sampleOffset, HEAD1_blocks_samples, true);
+
+std::ifstream brstmfile;
+
+extern "C" int16_t**  getBufferBlock(unsigned long sampleOffset){
+    brstm_fstream_getbuffer(brstmfile, sampleOffset, HEAD1_blocks_samples);
     return PCM_buffer;
 }
 extern "C" void closeBrstm(){
@@ -82,6 +87,13 @@ extern "C" void closeBrstm(){
 extern "C" unsigned long gHEAD1_total_samples(){
     return HEAD1_total_samples;
 }
-extern "C" unsigned int  gHEAD1_loop(){
+extern "C" unsigned int gHEAD1_loop(){
     return HEAD1_loop;
+}
+
+extern "C" void createIFSTREAMObject(char* filename){
+     brstmfile.open(filename);
+}
+extern "C" unsigned long gHEAD1_total_blocks(){
+    return HEAD1_total_blocks;
 }
