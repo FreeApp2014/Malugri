@@ -17,15 +17,14 @@ var decodeMode: Int = 0;
 func createAudioBuffer(_ PCMSamples: UnsafeMutablePointer<UnsafeMutablePointer<Int16>?>, offset: Int, needToInitFormat: Bool) -> AVAudioPCMBuffer {
     let channelCount = (gHEAD3_num_channels() > 2 ? 2 : gHEAD3_num_channels());
     if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)!;}
-    let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32((Int(gwritten_samples()) - offset)));
+    let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32((Int(gHEAD1_total_samples()) - offset)));
     buffer!.frameLength = AVAudioFrameCount(UInt32(Int(gHEAD1_total_samples()) - offset));
-    let samples16 = PCMSamples;
     var i: Int = 0;
     i = 0;
     var j: Int = 0;
     while (UInt32(j) < channelCount){
         while (UInt(i) < UInt((Int(gHEAD1_total_samples()) - offset))) {
-            buffer?.floatChannelData![j][i] =  Float32(Float32(samples16[j]![i+offset]) / Float32(32768));
+            buffer?.floatChannelData![j][i] =  Float32(Float32(PCMSamples[j]![i+offset]) / Float32(32768));
             i += 1;
         }
         i = 0;
@@ -85,7 +84,7 @@ class ViewController: NSViewController {
          do {
             let fileat = try FileManager.default.attributesOfItem(atPath: path);
             filesize = fileat[.size] as? UInt64 ?? UInt64(0);
-            if (filesize >= 10000000 && self.choiceGB.indexOfSelectedItem == 0) {
+            if (filesize >= 5000000 && self.choiceGB.indexOfSelectedItem == 0) {
                 decodeMode = 1;
             } else if (self.choiceGB.indexOfSelectedItem == 1){
                 decodeMode = 0;
@@ -98,6 +97,7 @@ class ViewController: NSViewController {
         }
         let file = FileHandle.init(forReadingAtPath: path)!.availableData;
         file.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
+            initStruct();
             readABrstm(u8Ptr, 1, decodeMode == 0);
             let pointer: UnsafePointer<Int8>? = NSString(string: path).utf8String;
             createIFSTREAMObject(strdup(pointer)!);

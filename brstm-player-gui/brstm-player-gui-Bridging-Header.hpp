@@ -5,7 +5,6 @@
 #import <stdint.h>
 
 unsigned char readABrstm(const unsigned char* fileData, unsigned char debugLevel, bool decodeADPCM);
-unsigned long gwritten_samples();
 unsigned long gHEAD1_sample_rate();
 unsigned int  gHEAD3_num_channels();
 unsigned long gHEAD1_loop_start();
@@ -17,4 +16,5 @@ void closeBrstm();
 unsigned long gHEAD1_total_samples();
 unsigned int  gHEAD1_loop();
 void createIFSTREAMObject(char* filename);
+void initStruct();
 unsigned long gHEAD1_total_blocks();
