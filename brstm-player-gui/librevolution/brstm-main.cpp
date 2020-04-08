@@ -4,46 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
-
-//brstm stuff
-
-unsigned int  HEAD1_codec; //char
-unsigned int  HEAD1_loop;  //char
-unsigned int  HEAD1_num_channels; //char
-unsigned int  HEAD1_sample_rate;
-unsigned long HEAD1_loop_start;
-unsigned long HEAD1_total_samples;
-unsigned long HEAD1_ADPCM_offset;
-unsigned long HEAD1_total_blocks;
-unsigned long HEAD1_blocks_size;
-unsigned long HEAD1_blocks_samples;
-unsigned long HEAD1_final_block_size;
-unsigned long HEAD1_final_block_samples;
-unsigned long HEAD1_final_block_size_p;
-unsigned long HEAD1_samples_per_ADPC;
-unsigned long HEAD1_bytes_per_ADPC;
-
-unsigned int  HEAD2_num_tracks;
-unsigned int  HEAD2_track_type;
-
-unsigned int  HEAD2_track_num_channels[8] = {0,0,0,0,0,0,0,0};
-unsigned int  HEAD2_track_lchannel_id [8] = {0,0,0,0,0,0,0,0};
-unsigned int  HEAD2_track_rchannel_id [8] = {0,0,0,0,0,0,0,0};
-//type 1 only
-unsigned int  HEAD2_track_volume      [8] = {0,0,0,0,0,0,0,0};
-unsigned int  HEAD2_track_panning     [8] = {0,0,0,0,0,0,0,0};
-//HEAD3
-unsigned int  HEAD3_num_channels;
-int16_t* PCM_samples[16];
-
-int16_t* PCM_buffer[16]; //unused in this program
-
-unsigned long written_samples=0;
-
-unsigned long readLen = HEAD1_blocks_samples;
-
-//TODO: add getters for more vars to make everything work
-
 #include "brstm.h"
 
 Brstm* brstmp;
@@ -79,10 +39,10 @@ extern "C" unsigned long gHEAD1_blocks_samples(){
 
 extern "C" int16_t**  getBufferBlock(unsigned long sampleOffset){
     //Prevent reading garbage from outside the file
-    std::cout << HEAD1_total_samples << " " << sampleOffset << " " << brstmp->blocks_samples << " " << readLen << std::endl;
-    if ((sampleOffset + brstmp->blocks_samples) > brstmp->total_samples) {readLen = HEAD1_total_samples - sampleOffset; std::cout << "End";}
+//    std::cout << brstmp->total_samples << " " << sampleOffset << " " << brstmp->blocks_samples << " " << readLen << std::endl;
+//    if ((sampleOffset + brstmp->blocks_samples) > brstmp->total_samples) {readLen = brstmp->total_samples - sampleOffset; std::cout << "End";}
     brstm_fstream_getbuffer(brstmp, brstmfile, sampleOffset, brstmp->blocks_samples);
-    return PCM_buffer;
+    return brstmp->PCM_buffer;
 }
 extern "C" void closeBrstm(){
     brstm_close(brstmp);
