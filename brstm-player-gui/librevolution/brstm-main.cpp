@@ -40,60 +40,64 @@ int16_t* PCM_buffer[16]; //unused in this program
 
 unsigned long written_samples=0;
 
-
+unsigned long readLen = HEAD1_blocks_samples;
 
 //TODO: add getters for more vars to make everything work
 
 #include "brstm.h"
 
+Brstm* brstmp;
+std::ifstream brstmfile;
 
 //Getters for outer world access
 
+extern "C" void initStruct(){
+    brstmp = new Brstm;
+}
+
 extern "C" unsigned long  gHEAD1_sample_rate(){
-    return HEAD1_sample_rate;
+    return brstmp->sample_rate;
 };
 extern "C" unsigned long gHEAD1_loop_start(){
-    return HEAD1_loop_start;
+    return brstmp->loop_start;
 }
 extern "C" unsigned char readABrstm (const unsigned char* fileData, unsigned char debugLevel, bool decodeADPCM)
 {
-    return readBrstm(fileData, debugLevel, decodeADPCM);
+    return brstm_read(brstmp, fileData, debugLevel, decodeADPCM);
 }
-extern "C" unsigned long gwritten_samples(){
-    return written_samples;
-};
 extern "C" int16_t** gPCM_samples(){
-    return PCM_samples;
+    return brstmp->PCM_samples;
 }
 extern "C" unsigned int  gHEAD3_num_channels(){
-    return HEAD3_num_channels;
+    return brstmp->num_channels;
 }
 extern "C" unsigned long gHEAD1_blocks_samples(){
-    return HEAD1_blocks_samples;
-}
-extern "C" int16_t** gPCM_buffer(){
-    return PCM_buffer;
+    return brstmp->blocks_samples;
 }
 
-std::ifstream brstmfile;
+
 
 extern "C" int16_t**  getBufferBlock(unsigned long sampleOffset){
-    brstm_fstream_getbuffer(brstmfile, sampleOffset, HEAD1_blocks_samples);
+    //Prevent reading garbage from outside the file
+    std::cout << HEAD1_total_samples << " " << sampleOffset << " " << brstmp->blocks_samples << " " << readLen << std::endl;
+    if ((sampleOffset + brstmp->blocks_samples) > brstmp->total_samples) {readLen = HEAD1_total_samples - sampleOffset; std::cout << "End";}
+    brstm_fstream_getbuffer(brstmp, brstmfile, sampleOffset, brstmp->blocks_samples);
     return PCM_buffer;
 }
 extern "C" void closeBrstm(){
-    brstm_close();
+    brstm_close(brstmp);
+    delete brstmp;
 }
 extern "C" unsigned long gHEAD1_total_samples(){
-    return HEAD1_total_samples;
+    return brstmp->total_samples;
 }
 extern "C" unsigned int gHEAD1_loop(){
-    return HEAD1_loop;
+    return brstmp->loop_flag;
 }
 
 extern "C" void createIFSTREAMObject(char* filename){
      brstmfile.open(filename);
 }
 extern "C" unsigned long gHEAD1_total_blocks(){
-    return HEAD1_total_blocks;
+    return brstmp->total_blocks;
 }
