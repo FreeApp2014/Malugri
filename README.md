@@ -1,5 +1,5 @@
 # Malugri
-A native BRSTM player Cocoa app for macOS. Based on [Extrasklep's C++ BRSTM decoder](https://github.com/Extrasklep/brstm)
+A native BRSTM player Cocoa app for macOS. Based on [Extrasklep's librevolution C++ BRSTM library](https://github.com/Extrasklep/revolution)
 
 ## Usage
 This app associates with *.brstm files on your system so files can be played by double clicking in Finder
