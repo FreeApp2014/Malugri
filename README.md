@@ -1,4 +1,5 @@
 # Malugri
+<img src="https://www.freeappsw.space/asset/Malugri.svg" width=256 alt=logo><br />
 A native BRSTM player Cocoa app for macOS. Based on [Extrasklep's librevolution C++ BRSTM library](https://github.com/Extrasklep/revolution)
 
 ## Usage
@@ -18,3 +19,6 @@ The app supports playing files by fully decoding them to RAM or by streaming fro
 
 ## Screenshot
  ![main window screenshot](https://scr.freeappsw.space/malugriappgh.png)
+
+## Special Thanks
+* [Gianmarco Gargiulo](https://www.gianmarco.ga/) for the logo ( [SVG](https://www.freeappsw.space/asset/Malugri.svg) / [PNG 2048px](https://www.freeappsw.space/asset/Malugri.svg.png))
