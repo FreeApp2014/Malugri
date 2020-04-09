@@ -314,7 +314,7 @@ void brstm_getbuffer_main(Brstm * brstmi,const unsigned char* fileData,bool data
         unsigned int blockEndReachedAt = 0;
         for(unsigned int c=0;c<brstmi->num_channels;c++) {
             //Create new array of samples for the current channel
-            delete[] brstmi->PCM_buffer[c];
+            //delete[] brstmi->PCM_buffer[c];
             brstmi->PCM_buffer[c] = new int16_t[bufferSamples];
             //offset in current block
             unsigned long dataIndex = sampleOffset-brstmi->blocks_samples*(unsigned int)(sampleOffset/brstmi->blocks_samples);

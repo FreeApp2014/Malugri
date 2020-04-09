@@ -81,6 +81,7 @@ class ViewController: NSViewController {
     }
     func readFile(path: String) -> Void {
         var filesize: UInt64 = 0;
+        initStruct();
          do {
             let fileat = try FileManager.default.attributesOfItem(atPath: path);
             filesize = fileat[.size] as? UInt64 ?? UInt64(0);
@@ -97,7 +98,6 @@ class ViewController: NSViewController {
         }
         let file = FileHandle.init(forReadingAtPath: path)!.availableData;
         file.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
-            initStruct();
             readABrstm(u8Ptr, 1, decodeMode == 0);
             let pointer: UnsafePointer<Int8>? = NSString(string: path).utf8String;
             createIFSTREAMObject(strdup(pointer)!);
