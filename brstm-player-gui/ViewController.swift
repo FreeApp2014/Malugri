@@ -110,6 +110,14 @@ class ViewController: NSViewController {
     @IBOutlet weak var filenameLabel: NSTextField!
     @IBOutlet weak var playPause: NSButton!
     @IBOutlet weak var stop: NSButton!
+    @IBOutlet weak var loopCheckBox: NSButton!
+    @IBAction func loopCheckBoxClicked(_ sender: Any) {
+        switch(loopCheckBox.state){
+            case .on: am.needsLoop = true; break;
+            case .off: am.needsLoop = false; break;
+            default: break;
+        }
+    }
     let am = AudioManager();
     @IBAction func pressBtn(_ sender: AnyObject) {
         let filePicker = NSOpenPanel();
@@ -133,10 +141,20 @@ class ViewController: NSViewController {
             self.am.i = 0;
             Thread.sleep(forTimeInterval: 0.05);
         }
+        self.fileTypeInfoField.stringValue = "BRSTM";
+        self.sampleRateInfoField.stringValue = String(gHEAD1_sample_rate()) + "Hz";
+        self.loopInfoField.stringValue = (gHEAD1_loop() == 1 ? "Yes" : "No");
+        self.totalSamplesInfoField.stringValue = String(gHEAD1_total_samples());
+        self.durationInfoField.stringValue = String(floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()))) + " seconds";
+        self.loopPointInfoField.stringValue = String(gHEAD1_loop_start());
+        self.blockSizeInfoField.stringValue = String(gHEAD1_blocks_samples()) + " Samples";
+        self.blockCountInfoField.stringValue = String(gHEAD1_total_blocks());
         self.filenameLabel.stringValue = path;
         self.playPause.title = "Pause";
         self.stop.isEnabled = true;
         self.playPause.isEnabled = true;
+        am.needsLoop = gHEAD1_loop() == 1;
+        self.loopCheckBox.state = am.needsLoop ? .on : .off;
         switch (decodeMode){
         case 0:
             let buffer = createAudioBuffer(gPCM_samples(), offset: 0, needToInitFormat: true);
@@ -162,7 +180,11 @@ class ViewController: NSViewController {
                 if (self.am.state()) {
                     DispatchQueue.main.sync{
                         self.progressBar.doubleValue = self.am.i;
-                        self.statusLabel.stringValue =  String(Int(ceil(self.am.i))) + " / " + String(Int(self.progressBar.maxValue)) + " s."
+                        let hms1 = self.secondsToHoursMinutesSeconds(seconds: Int(ceil(self.am.i)));
+                        let hms1s = (hms1.0 != 0 ? (String(hms1.0) + ":") : "" ) + String(hms1.1) + ":" + String(hms1.2);
+                        let hms2 = self.secondsToHoursMinutesSeconds(seconds: Int(self.progressBar.maxValue));
+                        let hms2s = hms2.0 != 0 ? String(hms2.0) + ":" : "" + String(hms2.1) + ":" + String(hms2.2);
+                        self.statusLabel.stringValue = hms1s + " / " + hms2s;
                     };
                 }
                 Thread.sleep(forTimeInterval: 0.5);
@@ -198,5 +220,18 @@ class ViewController: NSViewController {
         self.playPause.isEnabled = false;
         self.stop.isEnabled = false;
     }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60);
+    }
+    //Fields with the file information
+    @IBOutlet weak var fileTypeInfoField: NSTextField!
+    @IBOutlet weak var sampleRateInfoField: NSTextField!
+    @IBOutlet weak var loopInfoField: NSTextField!
+    @IBOutlet weak var loopPointInfoField: NSTextField!
+    @IBOutlet weak var totalSamplesInfoField: NSTextField!
+    @IBOutlet weak var durationInfoField: NSTextField!
+    @IBOutlet weak var blockSizeInfoField: NSTextField!
+    @IBOutlet weak var blockCountInfoField: NSTextField!
 }
 

@@ -53,7 +53,7 @@ class AudioManager:NSObject {
     
     func playBuffer(buffer: AVAudioPCMBuffer) -> Void {
         wasUsed = true;
-        needsLoop = gHEAD1_loop() == 1;
+        
         playerThread.async{
             self.needsToPlay = true;
             if (decodeMode == 1) {
