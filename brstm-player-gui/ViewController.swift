@@ -30,29 +30,27 @@ func createAudioBuffer(_ PCMSamples: UnsafeMutablePointer<UnsafeMutablePointer<I
         i = 0;
         j += 1;
     };
-    print(i);
     i = 0;
     return buffer!;
 }
 
-func createBlockBuffer(_ blockbuffer: UnsafeMutablePointer<UnsafeMutablePointer<Int16>?>, needToInitFormat: Bool) -> AVAudioPCMBuffer {
+func createBlockBuffer(_ blockbuffer: UnsafeMutablePointer<UnsafeMutablePointer<Int16>?>, needToInitFormat: Bool, bs: Int) -> AVAudioPCMBuffer {
     let channelCount = (gHEAD3_num_channels() > 2 ? 2 : gHEAD3_num_channels());
     if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)!;}
-    let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(gHEAD1_blocks_samples()));
-    buffer!.frameLength = AVAudioFrameCount(UInt32(gHEAD1_blocks_samples()));
+    let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32(bs));
+    buffer!.frameLength = AVAudioFrameCount(UInt32(bs));
     let samples16 = blockbuffer;
     var i: Int = 0;
     i = 0;
     var j: Int = 0;
     while (UInt32(j) < channelCount){
-        while (UInt(i) < gHEAD1_blocks_samples()) {
+        while (UInt(i) < bs) {
             buffer?.floatChannelData![j][i] =  Float32(Float32(samples16[j]![i]) / Float32(32768));
             i += 1;
         }
         i = 0;
         j += 1;
     };
-    print(i);
     i = 0;
     return buffer!;
 }
@@ -79,7 +77,7 @@ class ViewController: NSViewController {
     @objc func opener(_ sender: Notification) -> Void {
         pressBtn(self.stop);
     }
-    func readFile(path: String) -> Void {
+    func readFile(path: String) -> Bool {
         var filesize: UInt64 = 0;
         initStruct();
          do {
@@ -94,15 +92,44 @@ class ViewController: NSViewController {
             }
         } catch let error as NSError {
             print("FileAttribute error: \(error)");
-            return;
+            return false;
         }
-        let file = FileHandle.init(forReadingAtPath: path)!.availableData;
-        file.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) in
-            readABrstm(u8Ptr, 1, decodeMode == 0);
-            let pointer: UnsafePointer<Int8>? = NSString(string: path).utf8String;
-            createIFSTREAMObject(strdup(pointer)!);
+        switch(decodeMode){
+        case 0: let file = FileHandle.init(forReadingAtPath: path)!.availableData;
+        let resultRead = file.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) -> Bool in
+                    let stat = readABrstm(u8Ptr, 1, true);
+                    if (stat > 127){
+                        let alert = NSAlert();
+                        alert.messageText = "Error reading file: brstm_read returned error " + String(stat);
+                        alert.alertStyle = .critical;
+                        alert.runModal();
+                        return false;
+                    }
+                return true;
+                }
+        if (!resultRead) {return false};
+                break;
+        case 1: let pointer: UnsafePointer<Int8>? = NSString(string: path).utf8String;
+                let stati = createIFSTREAMObject(strdup(pointer)!);
+                if (stati != 1){
+                    let alert = NSAlert();
+                    alert.messageText = "Error reading file: ifstream::open returned code " + String(stati);
+                    alert.alertStyle = .critical;
+                    alert.runModal();
+                    return false;
+                }
+                let stat = readFstreamBrstm();
+                if (stat > 127){
+                    let alert = NSAlert();
+                    alert.messageText = "Error reading file: brstm_read returned error " + String(stat);
+                    alert.alertStyle = .critical;
+                    alert.runModal();
+                    return false;
+                }
+                break;
+        default: break;
         }
-        
+        return true;
     }
 
     @IBOutlet weak var choiceGB: NSPopUpButton!
@@ -134,65 +161,68 @@ class ViewController: NSViewController {
     }
 
     func handleFile(path: String) {
-        readFile(path: path);
-        if(am.wasUsed){
-            self.pressStop(self.stop);
-            print("a");
-            self.am.i = 0;
-            Thread.sleep(forTimeInterval: 0.05);
-        }
-        self.fileTypeInfoField.stringValue = "BRSTM";
-        self.sampleRateInfoField.stringValue = String(gHEAD1_sample_rate()) + "Hz";
-        self.loopInfoField.stringValue = (gHEAD1_loop() == 1 ? "Yes" : "No");
-        self.totalSamplesInfoField.stringValue = String(gHEAD1_total_samples());
-        self.durationInfoField.stringValue = String(floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()))) + " seconds";
-        self.loopPointInfoField.stringValue = String(gHEAD1_loop_start());
-        self.blockSizeInfoField.stringValue = String(gHEAD1_blocks_samples()) + " Samples";
-        self.blockCountInfoField.stringValue = String(gHEAD1_total_blocks());
-        self.filenameLabel.stringValue = path;
-        self.playPause.title = "Pause";
-        self.stop.isEnabled = true;
-        self.playPause.isEnabled = true;
-        am.needsLoop = gHEAD1_loop() == 1;
-        self.loopCheckBox.state = am.needsLoop ? .on : .off;
-        switch (decodeMode){
-        case 0:
-            let buffer = createAudioBuffer(gPCM_samples(), offset: 0, needToInitFormat: true);
-            am.initialize(format: format);
-            self.am.playBuffer(buffer: buffer);
-            am.genPB();
-            break;
-        case 1:
-            let blockbuffer = getBufferBlock(0);
-            let buffer = createBlockBuffer(blockbuffer!, needToInitFormat: true);
-            am.initialize(format: format);
-            self.am.playBuffer(buffer: buffer);
-            break
-        default:
-            print("if this is printed then idk what happened to this world")
-        }
-        let newThread = DispatchQueue.global(qos: .background);
-        self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()));
-        print( self.progressBar.maxValue);
-        secLen = self.progressBar.maxValue;
-        newThread.async{
-            while (self.am.varPlay() || self.am.needsLoop){
-                if (self.am.state()) {
-                    DispatchQueue.main.sync{
-                        self.progressBar.doubleValue = self.am.i;
-                        let hms1 = self.secondsToHoursMinutesSeconds(seconds: Int(ceil(self.am.i)));
-                        let hms1s = (hms1.0 != 0 ? (String(hms1.0) + ":") : "" ) + String(hms1.1) + ":" + String(hms1.2);
-                        let hms2 = self.secondsToHoursMinutesSeconds(seconds: Int(self.progressBar.maxValue));
-                        let hms2s = hms2.0 != 0 ? String(hms2.0) + ":" : "" + String(hms2.1) + ":" + String(hms2.2);
-                        self.statusLabel.stringValue = hms1s + " / " + hms2s;
-                    };
-                }
-                Thread.sleep(forTimeInterval: 0.5);
+        if (readFile(path: path)){
+            if(am.wasUsed){
+                self.pressStop(self.stop);
+                print("a");
+                self.am.i = 0;
+                Thread.sleep(forTimeInterval: 0.05);
             }
-            DispatchQueue.main.sync{
-                self.progressBar.doubleValue = 0;
-                self.fileFinished();
-            };
+            self.fileTypeInfoField.stringValue = "BRSTM";
+            self.sampleRateInfoField.stringValue = String(gHEAD1_sample_rate()) + "Hz";
+            self.loopInfoField.stringValue = (gHEAD1_loop() == 1 ? "Yes" : "No");
+            self.totalSamplesInfoField.stringValue = String(gHEAD1_total_samples());
+            self.durationInfoField.stringValue = String(floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()))) + " seconds";
+            self.loopPointInfoField.stringValue = String(gHEAD1_loop_start());
+            self.blockSizeInfoField.stringValue = String(gHEAD1_blocks_samples()) + " Samples";
+            self.blockCountInfoField.stringValue = String(gHEAD1_total_blocks());
+            self.filenameLabel.stringValue = path;
+            self.playPause.title = "Pause";
+            self.stop.isEnabled = true;
+            self.playPause.isEnabled = true;
+            am.needsLoop = gHEAD1_loop() == 1;
+            self.loopCheckBox.state = am.needsLoop ? .on : .off;
+            switch (decodeMode){
+            case 0:
+                let buffer = createAudioBuffer(gPCM_samples(), offset: 0, needToInitFormat: true);
+                am.initialize(format: format);
+                self.am.playBuffer(buffer: buffer);
+                am.genPB();
+                break;
+            case 1:
+                let blockbuffer = getBufferBlock(0);
+                let buffer = createBlockBuffer(blockbuffer!, needToInitFormat: true, bs: Int(gHEAD1_blocks_samples()));
+                am.initialize(format: format);
+                self.am.playBuffer(buffer: buffer);
+                break
+            default:
+                print("if this is printed then idk what happened to this world")
+            }
+            let newThread = DispatchQueue.global(qos: .background);
+            self.progressBar.maxValue = floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()));
+            print( self.progressBar.maxValue);
+            secLen = self.progressBar.maxValue;
+            newThread.async{
+                while (self.am.varPlay() || self.am.needsLoop){
+                    if (self.am.state()) {
+                        DispatchQueue.main.sync{
+                            self.progressBar.doubleValue = self.am.i;
+                            let hms1 = self.secondsToHoursMinutesSeconds(seconds: Int(ceil(self.am.i)));
+                            var hms1s = (hms1.0 != 0 ? (String(hms1.0) + ":") : "" ) + String(hms1.1) + ":";
+                            hms1s += (hms1.2 < 10 ? "0" : "") + String(hms1.2);
+                            let hms2 = self.secondsToHoursMinutesSeconds(seconds: Int(self.progressBar.maxValue));
+                            var hms2s = hms2.0 != 0 ? String(hms2.0) + ":" : "" + String(hms2.1) + ":";
+                            hms2s += (hms2.2 < 10 ? "0" : "") + String(hms2.2);
+                            self.statusLabel.stringValue = hms1s + " / " + hms2s;
+                        };
+                    }
+                    Thread.sleep(forTimeInterval: 0.5);
+                }
+                DispatchQueue.main.sync{
+                    self.progressBar.doubleValue = 0;
+                    self.fileFinished();
+                };
+            }
         }
     }
 

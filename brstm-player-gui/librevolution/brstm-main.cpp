@@ -21,9 +21,11 @@ extern "C" unsigned long  gHEAD1_sample_rate(){
 extern "C" unsigned long gHEAD1_loop_start(){
     return brstmp->loop_start;
 }
-extern "C" unsigned char readABrstm (const unsigned char* fileData, unsigned char debugLevel, bool decodeADPCM)
-{
+extern "C" unsigned char readABrstm (const unsigned char* fileData, unsigned char debugLevel, bool decodeADPCM){
     return brstm_read(brstmp, fileData, debugLevel, decodeADPCM);
+}
+extern "C" unsigned char readFstreamBrstm(){
+    return brstm_fstream_read(brstmp, brstmfile, 1);
 }
 extern "C" int16_t** gPCM_samples(){
     return brstmp->PCM_samples;
@@ -38,10 +40,10 @@ extern "C" unsigned long gHEAD1_blocks_samples(){
 
 
 extern "C" int16_t**  getBufferBlock(unsigned long sampleOffset){
-    //Prevent reading garbage from outside the file
-//    std::cout << brstmp->total_samples << " " << sampleOffset << " " << brstmp->blocks_samples << " " << readLen << std::endl;
-//    if ((sampleOffset + brstmp->blocks_samples) > brstmp->total_samples) {readLen = brstmp->total_samples - sampleOffset; std::cout << "End";}
-    brstm_fstream_getbuffer(brstmp, brstmfile, sampleOffset, brstmp->blocks_samples);
+    unsigned int readLength;
+    if (sampleOffset/brstmp->blocks_samples < (brstmp->total_blocks)) readLength = brstmp->blocks_samples;
+    else readLength = brstmp->final_block_size;
+    brstm_fstream_getbuffer(brstmp, brstmfile, sampleOffset, readLength);
     return brstmp->PCM_buffer;
 }
 extern "C" void closeBrstm(){
@@ -55,9 +57,15 @@ extern "C" unsigned int gHEAD1_loop(){
     return brstmp->loop_flag;
 }
 
-extern "C" void createIFSTREAMObject(char* filename){
+extern "C" int createIFSTREAMObject(char* filename){
      brstmfile.open(filename);
+     return brstmfile.is_open();
 }
 extern "C" unsigned long gHEAD1_total_blocks(){
     return brstmp->total_blocks;
 }
+
+extern "C" unsigned long gHEAD1_final_block_samples(){
+    return brstmp->final_block_samples;
+}
+

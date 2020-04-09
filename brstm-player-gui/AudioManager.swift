@@ -72,9 +72,7 @@ class AudioManager:NSObject {
             self.audioPlayerNode.scheduleBuffer(buffer,  completionHandler: {
                 if (decodeMode == 0) {self.releasedSampleNumber = self.audioPlayerNode.lastRenderTime!.sampleTime - Int64(gHEAD1_loop_start());}
                 self.needsToPlay = false;
-                print("CH");
                 if (self.needsLoop){
-                    print("Loop");
                     if (decodeMode == 0) {self.loopCount += 1;}
                     self.playBuffer(buffer: loopBuffer);
                 } else {
@@ -88,7 +86,6 @@ class AudioManager:NSObject {
                 }
                 Thread.sleep(forTimeInterval: 0.001);
             };
-            print("A");
         };
     }
     func state() -> Bool {
@@ -130,6 +127,9 @@ class AudioManager:NSObject {
     }
     func getNextChunk() -> AVAudioPCMBuffer {
         let bufferblock = getBufferBlock(gHEAD1_blocks_samples() * UInt(loopCount));
-        return createBlockBuffer(bufferblock!, needToInitFormat: false);
+        let bs: Int;
+        if (gHEAD1_blocks_samples() * UInt(loopCount) / gHEAD1_blocks_samples() < gHEAD1_total_blocks()) {bs = Int(gHEAD1_blocks_samples());}
+        else {bs = Int(gHEAD1_final_block_samples());}
+        return createBlockBuffer(bufferblock!, needToInitFormat: false, bs: bs);
     }
 }
