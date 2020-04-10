@@ -30,6 +30,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         nc.post(name: Notification.Name("opener"), object: nil);
     }
 
+    @IBAction func converterWAV(_ sender: Any) {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("converter"), object: nil);
+    }
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("file"), object: filename);

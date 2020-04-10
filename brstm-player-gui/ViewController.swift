@@ -14,22 +14,36 @@ var format: AVAudioFormat = AVAudioFormat();
 var secLen: Double = 0.0;
 var decodeMode: Int = 0;
 
-func createAudioBuffer(_ PCMSamples: UnsafeMutablePointer<UnsafeMutablePointer<Int16>?>, offset: Int, needToInitFormat: Bool) -> AVAudioPCMBuffer {
+func createAudioBuffer(_ PCMSamples: UnsafeMutablePointer<UnsafeMutablePointer<Int16>?>, offset: Int, needToInitFormat: Bool, format16: Bool = false) -> AVAudioPCMBuffer {
     let channelCount = (gHEAD3_num_channels() > 2 ? 2 : gHEAD3_num_channels());
-    if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)!;}
+    if (!format16){
+        if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatFloat32, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)!;}
+    } else {
+        if (needToInitFormat) {format = AVAudioFormat.init(commonFormat: AVAudioCommonFormat.pcmFormatInt16, sampleRate: Double(gHEAD1_sample_rate()), channels: UInt32(channelCount), interleaved: false)!;}
+    }
     let buffer = AVAudioPCMBuffer.init(pcmFormat: format, frameCapacity: UInt32((Int(gHEAD1_total_samples()) - offset)));
     buffer!.frameLength = AVAudioFrameCount(UInt32(Int(gHEAD1_total_samples()) - offset));
     var i: Int = 0;
     i = 0;
     var j: Int = 0;
-    while (UInt32(j) < channelCount){
+    if (!format16){
+        while (UInt32(j) < channelCount){
+            while (UInt(i) < UInt((Int(gHEAD1_total_samples()) - offset))) {
+                buffer?.floatChannelData![j][i] =  Float32(Float32(PCMSamples[j]![i+offset]) / Float32(32768));
+                i += 1;
+            }
+            i = 0;
+            j += 1;
+        };} else {
+        while (UInt32(j) < channelCount){
         while (UInt(i) < UInt((Int(gHEAD1_total_samples()) - offset))) {
-            buffer?.floatChannelData![j][i] =  Float32(Float32(PCMSamples[j]![i+offset]) / Float32(32768));
+            buffer?.int16ChannelData![j][i] =  PCMSamples[j]![i+offset];
             i += 1;
         }
         i = 0;
         j += 1;
-    };
+    }
+    }
     i = 0;
     return buffer!;
 }
@@ -62,6 +76,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(notify(_:)), name: Notification.Name("file"), object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(opener(_:)), name: Notification.Name("opener"), object: nil);
+         NotificationCenter.default.addObserver(self, selector: #selector(brstmToWav(_:)), name: Notification.Name("converter"), object: nil);
     }
 
     override var representedObject: Any? {
@@ -77,7 +92,7 @@ class ViewController: NSViewController {
     @objc func opener(_ sender: Notification) -> Void {
         pressBtn(self.stop);
     }
-    func readFile(path: String) -> Bool {
+    func readFile(path: String, convert: Bool = false) -> Bool {
         var filesize: UInt64 = 0;
         initStruct();
          do {
@@ -94,6 +109,7 @@ class ViewController: NSViewController {
             print("FileAttribute error: \(error)");
             return false;
         }
+        if (convert) {decodeMode = 0;}
         switch(decodeMode){
         case 0: let file = FileHandle.init(forReadingAtPath: path)!.availableData;
         let resultRead = file.withUnsafeBytes { (u8Ptr: UnsafePointer<UInt8>) -> Bool in
@@ -160,6 +176,39 @@ class ViewController: NSViewController {
         }
     }
 
+    @objc func brstmToWav(_ sender: Notification){
+        let filePicker = NSOpenPanel();
+            filePicker.allowsMultipleSelection = false;
+            filePicker.allowedFileTypes = ["brstm"];
+            filePicker.allowsOtherFileTypes = false;
+            if (filePicker.runModal() == NSApplication.ModalResponse.OK){
+                let fileUri = filePicker.url;
+                if (fileUri != nil){
+                    let path = fileUri!.path;
+                    if(readFile(path: path, convert: true)){
+                            let buffer = createAudioBuffer(gPCM_samples(), offset: 0, needToInitFormat: true, format16: true);
+                            let savePanel = NSSavePanel()
+                            savePanel.begin { (result) in
+                                if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
+                                   do { let outputFile = try AVAudioFile.init(forWriting: savePanel.url!, settings: [AVFormatIDKey:kAudioFormatLinearPCM,
+                                                  AVLinearPCMBitDepthKey: 16,
+                                                  AVLinearPCMIsFloatKey: false,
+                                                  //  AVLinearPCMIsBigEndianKey: false,
+                                                  AVSampleRateKey: gHEAD1_sample_rate(),
+                                                  AVNumberOfChannelsKey: gHEAD3_num_channels() > 2 ? 2 : gHEAD3_num_channels()
+                                                  ] as [String : Any], commonFormat: .pcmFormatInt16, interleaved: false);
+                                    try outputFile.write(from: buffer);
+                                    } catch {
+                                        print("Error");
+                                    }
+                                }
+                            }
+                        
+                    }
+                }
+            }
+        }
+    
     func handleFile(path: String) {
         if (readFile(path: path)){
             if(am.wasUsed){

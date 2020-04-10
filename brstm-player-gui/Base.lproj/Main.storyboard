@@ -65,6 +65,12 @@
                                                 <action selector="fileOpenClick:" target="Voe-Tx-rLC" id="4Vq-zK-Tt0"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Convert to WAV" id="h6I-HF-QH1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="converterWAV:" target="Voe-Tx-rLC" id="92Z-gP-tGS"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rC5-2f-gjh"/>
                                         <menuItem title="Close" keyEquivalent="w" id="Udk-Ab-YKk">
                                             <connections>
