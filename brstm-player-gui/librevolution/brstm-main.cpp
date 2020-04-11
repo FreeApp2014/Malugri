@@ -13,6 +13,15 @@ std::ifstream brstmfile;
 
 extern "C" void initStruct(){
     brstmp = new Brstm;
+    for (unsigned int c = 0; c < 16; c++){
+        brstmp->ADPCM_buffer[c] = nullptr;
+        brstmp->ADPCM_data[c] = nullptr;
+        brstmp->ADPCM_hsamples_1[c] = nullptr;
+        brstmp->ADPCM_hsamples_2[c] = nullptr;
+        brstmp->PCM_blockbuffer[c] = nullptr;
+        brstmp->PCM_buffer[c] = nullptr;
+        brstmp->PCM_samples[c] = nullptr;
+    }
 }
 
 extern "C" unsigned long  gHEAD1_sample_rate(){
@@ -49,6 +58,7 @@ extern "C" int16_t**  getBufferBlock(unsigned long sampleOffset){
 extern "C" void closeBrstm(){
     brstm_close(brstmp);
     delete brstmp;
+    brstmfile.close();
 }
 extern "C" unsigned long gHEAD1_total_samples(){
     return brstmp->total_samples;
