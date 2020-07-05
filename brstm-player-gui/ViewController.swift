@@ -165,7 +165,7 @@ class ViewController: NSViewController {
     @IBAction func pressBtn(_ sender: AnyObject) {
         let filePicker = NSOpenPanel();
         filePicker.allowsMultipleSelection = false;
-        filePicker.allowedFileTypes = ["brstm"];
+        filePicker.allowedFileTypes = ["brstm", "bwav", "bfstm"];
         filePicker.allowsOtherFileTypes = false;
         if (filePicker.runModal() == NSApplication.ModalResponse.OK){
             let fileUri = filePicker.url;
@@ -179,7 +179,7 @@ class ViewController: NSViewController {
     @objc func brstmToWav(_ sender: Notification){
         let filePicker = NSOpenPanel();
             filePicker.allowsMultipleSelection = false;
-            filePicker.allowedFileTypes = ["brstm"];
+            filePicker.allowedFileTypes = ["brstm", "bwav", "bfstm"];
             filePicker.allowsOtherFileTypes = false;
             if (filePicker.runModal() == NSApplication.ModalResponse.OK){
                 let fileUri = filePicker.url;
@@ -217,7 +217,7 @@ class ViewController: NSViewController {
                 self.am.i = 0;
                 Thread.sleep(forTimeInterval: 0.05);
             }
-            self.fileTypeInfoField.stringValue = "BRSTM";
+            self.fileTypeInfoField.stringValue = AudioManager.resolveAudioFormat(UInt(gFileType()));
             self.sampleRateInfoField.stringValue = String(gHEAD1_sample_rate()) + "Hz";
             self.loopInfoField.stringValue = (gHEAD1_loop() == 1 ? "Yes" : "No");
             self.totalSamplesInfoField.stringValue = String(gHEAD1_total_samples());

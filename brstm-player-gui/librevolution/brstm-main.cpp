@@ -79,3 +79,6 @@ extern "C" unsigned long gHEAD1_final_block_samples(){
     return brstmp->final_block_samples;
 }
 
+extern "C" unsigned int gFileType(){
+    return brstmp->file_format;
+}

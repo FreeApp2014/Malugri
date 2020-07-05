@@ -11,21 +11,36 @@ unsigned char brstm_formats_read_bwav(Brstm* brstmi,const unsigned char* fileDat
     }
     //BWAV is weird and stupid
     brstmi->num_channels = brstm_getSliceAsNumber(fileData,0x0E,2,BOM);
+    if(brstmi->num_channels > 16) {
+        if(debugLevel>=0) {std::cout << "Too many channels, max supported is 16.\n";}
+        return 248;
+    }
     brstmi->codec = brstm_getSliceAsNumber(fileData,0x10,2,BOM) + 1; //add 1 so the codec number is like BRSTM's codec number
     brstmi->sample_rate = brstm_getSliceAsNumber(fileData,0x14,4,BOM);
     brstmi->total_samples = brstm_getSliceAsNumber(fileData,0x18,4,BOM);
     brstmi->loop_flag = ( (int32_t)brstm_getSliceAsNumber(fileData,0x4C,4,BOM) != -1 );
     brstmi->loop_start = brstm_getSliceAsNumber(fileData,0x50,4,BOM);
+    
     brstmi->audio_offset = brstm_getSliceAsNumber(fileData,0x40,4,BOM);
     brstmi->total_blocks = 1;
-    brstmi->blocks_size = brstmi->num_channels > 1 ? (brstm_getSliceAsNumber(fileData,0x8C,4,BOM) - brstmi->audio_offset) : (brstmi->codec == 1 ? brstmi->total_samples*2 : brstmi->total_samples/1.75);
+    brstmi->blocks_size = brstmi->num_channels > 1 ? (brstm_getSliceAsNumber(fileData,0x8C,4,BOM) - brstmi->audio_offset) : (brstmi->codec == 1 ? brstmi->total_samples*2 : brstm_getBytesForAdpcmSamples(brstmi->total_samples));
     brstmi->blocks_samples = brstmi->total_samples;
     brstmi->final_block_size = brstmi->blocks_size;
     brstmi->final_block_samples = brstmi->blocks_samples;
     brstmi->final_block_size_p = brstmi->final_block_size;
     
-    //Write BRSTM standard track data
-    brstmi->num_tracks = (brstmi->num_channels > 1 && brstmi->num_channels%2 == 0) ? brstmi->num_channels/2 : brstmi->num_channels;
+    unsigned int channelPans[2];
+    channelPans[0] = brstm_getSliceAsNumber(fileData,0x12,2,BOM);
+    if(brstmi->num_channels > 1) {
+        channelPans[1] = brstm_getSliceAsNumber(fileData,0x12+0x4C,2,BOM);
+    }
+    
+    //Guess track data based on channel pans and channel count
+    brstmi->num_tracks = (brstmi->num_channels > 1 && brstmi->num_channels%2 == 0 && channelPans[0] == 0 && channelPans[1] == 1) ? brstmi->num_channels/2 : brstmi->num_channels;
+    if(brstmi->num_tracks > 8) {
+        if(debugLevel>=0) {std::cout << "Too many tracks, max supported is 8.\n";}
+        return 248;
+    }
     unsigned char track_num_channels = brstmi->num_tracks*2 == brstmi->num_channels ? 2 : 1;
     brstmi->track_desc_type = 0;
     for(unsigned char c=0; c<brstmi->num_channels; c++) {
@@ -40,15 +55,15 @@ unsigned char brstm_formats_read_bwav(Brstm* brstmi,const unsigned char* fileDat
             }
         }
     }
-    if(brstmi->num_tracks>1 && debugLevel>=0) {std::cout << "Warning: Tracks are assumed\n";}
+    if(brstmi->num_tracks>1 && debugLevel>=0) {std::cout << "Warning: BWAV track information is guessed\n";}
     
     //Audio
-    //Create history samples
+    //Create and read history samples
     for(unsigned char c=0;c<brstmi->num_channels;c++) {
         brstmi->ADPCM_hsamples_1[c] = new int16_t[1];
         brstmi->ADPCM_hsamples_2[c] = new int16_t[1];
-        brstmi->ADPCM_hsamples_1[c][0] = 0;
-        brstmi->ADPCM_hsamples_2[c][0] = 0;
+        brstmi->ADPCM_hsamples_1[c][0] = brstm_getSliceAsInt16Sample(fileData,0x56+c*0x4C,BOM);
+        brstmi->ADPCM_hsamples_2[c][0] = brstm_getSliceAsInt16Sample(fileData,0x58+c*0x4C,BOM);
     }
     if(decodeAudio) {
         for(unsigned int c=0;c<brstmi->num_channels;c++) {
@@ -83,7 +98,7 @@ unsigned char brstm_formats_read_bwav(Brstm* brstmi,const unsigned char* fileDat
                         }
                     } else {
                         if(debugLevel>=0) {std::cout << "Cannot write raw ADPCM data because the codec is not ADPCM.\n";}
-                        return 220;
+                        return 222;
                     }
                 }
                 posOffset+=brstmi->blocks_size*brstmi->num_channels;

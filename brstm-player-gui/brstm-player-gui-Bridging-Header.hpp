@@ -20,3 +20,4 @@ void initStruct();
 unsigned long gHEAD1_total_blocks();
 unsigned long gHEAD1_final_block_samples();
 unsigned char readFstreamBrstm();
+unsigned int gFileType();

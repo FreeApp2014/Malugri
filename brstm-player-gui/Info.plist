@@ -11,14 +11,52 @@
 			<array>
 				<string>brstm</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>brstm</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
-				<string>application/x-binary-revolution-stream</string>
+				<string>audio/binary-revolution-stream</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>Binary Revolution Stream audio file</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>NSDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>bwav</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>audio/bwav</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Nintendo BWAV audio file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>NSDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>bfstm</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>audio/binary-cafe-stream</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Binary caFe Stream audio file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
@@ -38,7 +76,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1-alpha</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>

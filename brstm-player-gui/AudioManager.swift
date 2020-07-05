@@ -7,6 +7,7 @@ import Foundation
 import AVFoundation
 import Cocoa
 
+
 var needLoop = true;
 var loopBuffer: AVAudioPCMBuffer = AVAudioPCMBuffer();
 
@@ -49,6 +50,25 @@ class AudioManager:NSObject {
     
     func getCurrentSampleNumber() -> Int64{
         return self.audioPlayerNode.lastRenderTime!.sampleTime - releasedSampleNumber + pausedSampleNumber;
+    }
+    
+    static func resolveAudioFormat(_ formatCode: UInt) -> String {
+        switch (formatCode) {
+        case 1: return "BRSTM";
+        case 2: return "BCSTM";
+        case 3: return "BFSTM";
+        case 4: return "BWAV";
+        case 5: return "ORSTM";
+        default: return "Unknown format";
+        }
+    }
+    static func resolveAudioCodec(_ codecCode: UInt) -> String { //Not used yet
+        switch (codecCode){
+        case 0: return "8bit PCM";
+        case 1: return "16bit PCM";
+        case 2: return "DSP-ADPCM";
+        default: return "Unknown codec";
+        }
     }
     
     func playBuffer(buffer: AVAudioPCMBuffer) -> Void {

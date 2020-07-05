@@ -1,28 +1,12 @@
 //C++ BRSTM encoder
 //Copyright (C) 2020 Extrasklep
-//https://github.com/Extrasklep/revolution
+//https://github.com/Extrasklep/openrevolution
 
 //This file requires brstm.h to be included too
 
 #include <math.h>
-#include "dspadpcm_encoder.c"
-#define PACKET_NIBBLES 16
-#define PACKET_SAMPLES 14
-#define PACKET_BYTES 8
-
-unsigned int brstm_encoder_GetBytesForAdpcmSamples(int samples) {
-    int extraBytes = 0;
-    int packets = samples / PACKET_SAMPLES;
-    int extraSamples = samples % PACKET_SAMPLES;
-
-    if (extraSamples != 0) {
-        extraBytes = (extraSamples / 2) + (extraSamples % 2) + 1;
-    }
-
-    return PACKET_BYTES * packets + extraBytes;
-}
-
 #include "utils.h"
+#include "audio_encoder.h"
 #include "e_formats/all.h"
 
 /* 
@@ -53,12 +37,12 @@ unsigned char brstm_encode(Brstm* brstmi,signed int debugLevel,uint8_t encodeADP
     //Check for invalid requests
     //Too many tracks
     if(brstmi->num_tracks > 8) {
-        if(debugLevel>=0) std::cout << "Too many tracks. Max supported is 8.\n";
+        if(debugLevel>=0) std::cout << "Too many tracks, max supported is 8.\n";
         return 248;
     }
     //Too many channels
     if(brstmi->num_channels > 16) {
-        if(debugLevel>=0) std::cout << "Too many channels. Max supported is 16.\n";
+        if(debugLevel>=0) std::cout << "Too many channels, max supported is 16.\n";
         return 249;
     }
     //Unsupported track description type
@@ -81,6 +65,9 @@ unsigned char brstm_encode(Brstm* brstmi,signed int debugLevel,uint8_t encodeADP
     } else if(brstmi->file_format==4) {
         //BWAV
         encres = brstm_formats_encode_bwav (brstmi,debugLevel,encodeADPCM);
+    } else if(brstmi->file_format==5) {
+        //ORSTM
+        encres = brstm_formats_encode_orstm(brstmi,debugLevel,encodeADPCM);
     } else {
         //Invalid
         if(debugLevel>=0) std::cout << "Invalid file format.\n";
