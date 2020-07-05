@@ -92,7 +92,7 @@ class AudioManager:NSObject {
             self.audioPlayerNode.scheduleBuffer(buffer,  completionHandler: {
                 if (decodeMode == 0) {self.releasedSampleNumber = self.audioPlayerNode.lastRenderTime!.sampleTime - Int64(gHEAD1_loop_start());}
                 self.needsToPlay = false;
-                if (self.needsLoop){
+                if (self.needsLoop || decodeMode == 1){
                     if (decodeMode == 0) {self.loopCount += 1;}
                     self.playBuffer(buffer: loopBuffer);
                 } else {
