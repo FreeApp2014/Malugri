@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E8FE22F1253D87DE009AE121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE22F0253D87DE009AE121 /* AppDelegate.swift */; };
+		E8FE22F3253D87DE009AE121 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE22F2253D87DE009AE121 /* ViewController.swift */; };
+		E8FE22F5253D87E3009AE121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE22F4253D87E3009AE121 /* Assets.xcassets */; };
+		E8FE22F8253D87E3009AE121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FE22F6253D87E3009AE121 /* Main.storyboard */; };
+		E8FE2304253D87E4009AE121 /* MalugriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE2303253D87E4009AE121 /* MalugriTests.swift */; };
+		E8FE230F253D87E4009AE121 /* MalugriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE230E253D87E4009AE121 /* MalugriUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E8FE2300253D87E4009AE121 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8FE22E5253D87DE009AE121 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8FE22EC253D87DE009AE121;
+			remoteInfo = Malugri;
+		};
+		E8FE230B253D87E4009AE121 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8FE22E5253D87DE009AE121 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8FE22EC253D87DE009AE121;
+			remoteInfo = Malugri;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E8FE22ED253D87DE009AE121 /* Malugri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Malugri.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FE22F0253D87DE009AE121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E8FE22F2253D87DE009AE121 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E8FE22F4253D87E3009AE121 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8FE22F7253D87E3009AE121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E8FE22F9253D87E3009AE121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8FE22FA253D87E3009AE121 /* Malugri.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Malugri.entitlements; sourceTree = "<group>"; };
+		E8FE22FF253D87E4009AE121 /* MalugriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MalugriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FE2303253D87E4009AE121 /* MalugriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalugriTests.swift; sourceTree = "<group>"; };
+		E8FE2305253D87E4009AE121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8FE230A253D87E4009AE121 /* MalugriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MalugriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FE230E253D87E4009AE121 /* MalugriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MalugriUITests.swift; sourceTree = "<group>"; };
+		E8FE2310253D87E4009AE121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8FE22EA253D87DE009AE121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8FE22FC253D87E4009AE121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8FE2307253D87E4009AE121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8FE22E4253D87DE009AE121 = {
+			isa = PBXGroup;
+			children = (
+				E8FE22EF253D87DE009AE121 /* Malugri */,
+				E8FE2302253D87E4009AE121 /* MalugriTests */,
+				E8FE230D253D87E4009AE121 /* MalugriUITests */,
+				E8FE22EE253D87DE009AE121 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E8FE22EE253D87DE009AE121 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE22ED253D87DE009AE121 /* Malugri.app */,
+				E8FE22FF253D87E4009AE121 /* MalugriTests.xctest */,
+				E8FE230A253D87E4009AE121 /* MalugriUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8FE22EF253D87DE009AE121 /* Malugri */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE22F0253D87DE009AE121 /* AppDelegate.swift */,
+				E8FE22F2253D87DE009AE121 /* ViewController.swift */,
+				E8FE22F4253D87E3009AE121 /* Assets.xcassets */,
+				E8FE22F6253D87E3009AE121 /* Main.storyboard */,
+				E8FE22F9253D87E3009AE121 /* Info.plist */,
+				E8FE22FA253D87E3009AE121 /* Malugri.entitlements */,
+			);
+			path = Malugri;
+			sourceTree = "<group>";
+		};
+		E8FE2302253D87E4009AE121 /* MalugriTests */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE2303253D87E4009AE121 /* MalugriTests.swift */,
+				E8FE2305253D87E4009AE121 /* Info.plist */,
+			);
+			path = MalugriTests;
+			sourceTree = "<group>";
+		};
+		E8FE230D253D87E4009AE121 /* MalugriUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E8FE230E253D87E4009AE121 /* MalugriUITests.swift */,
+				E8FE2310253D87E4009AE121 /* Info.plist */,
+			);
+			path = MalugriUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8FE22EC253D87DE009AE121 /* Malugri */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8FE2313253D87E4009AE121 /* Build configuration list for PBXNativeTarget "Malugri" */;
+			buildPhases = (
+				E8FE22E9253D87DE009AE121 /* Sources */,
+				E8FE22EA253D87DE009AE121 /* Frameworks */,
+				E8FE22EB253D87DE009AE121 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Malugri;
+			productName = Malugri;
+			productReference = E8FE22ED253D87DE009AE121 /* Malugri.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E8FE22FE253D87E4009AE121 /* MalugriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8FE2316253D87E4009AE121 /* Build configuration list for PBXNativeTarget "MalugriTests" */;
+			buildPhases = (
+				E8FE22FB253D87E4009AE121 /* Sources */,
+				E8FE22FC253D87E4009AE121 /* Frameworks */,
+				E8FE22FD253D87E4009AE121 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8FE2301253D87E4009AE121 /* PBXTargetDependency */,
+			);
+			name = MalugriTests;
+			productName = MalugriTests;
+			productReference = E8FE22FF253D87E4009AE121 /* MalugriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E8FE2309253D87E4009AE121 /* MalugriUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8FE2319253D87E4009AE121 /* Build configuration list for PBXNativeTarget "MalugriUITests" */;
+			buildPhases = (
+				E8FE2306253D87E4009AE121 /* Sources */,
+				E8FE2307253D87E4009AE121 /* Frameworks */,
+				E8FE2308253D87E4009AE121 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8FE230C253D87E4009AE121 /* PBXTargetDependency */,
+			);
+			name = MalugriUITests;
+			productName = MalugriUITests;
+			productReference = E8FE230A253D87E4009AE121 /* MalugriUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8FE22E5253D87DE009AE121 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = freeappsw;
+				TargetAttributes = {
+					E8FE22EC253D87DE009AE121 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					E8FE22FE253D87E4009AE121 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = E8FE22EC253D87DE009AE121;
+					};
+					E8FE2309253D87E4009AE121 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = E8FE22EC253D87DE009AE121;
+					};
+				};
+			};
+			buildConfigurationList = E8FE22E8253D87DE009AE121 /* Build configuration list for PBXProject "Malugri" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E8FE22E4253D87DE009AE121;
+			productRefGroup = E8FE22EE253D87DE009AE121 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8FE22EC253D87DE009AE121 /* Malugri */,
+				E8FE22FE253D87E4009AE121 /* MalugriTests */,
+				E8FE2309253D87E4009AE121 /* MalugriUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8FE22EB253D87DE009AE121 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FE22F5253D87E3009AE121 /* Assets.xcassets in Resources */,
+				E8FE22F8253D87E3009AE121 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8FE22FD253D87E4009AE121 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8FE2308253D87E4009AE121 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8FE22E9253D87DE009AE121 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FE22F3253D87DE009AE121 /* ViewController.swift in Sources */,
+				E8FE22F1253D87DE009AE121 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8FE22FB253D87E4009AE121 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FE2304253D87E4009AE121 /* MalugriTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8FE2306253D87E4009AE121 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FE230F253D87E4009AE121 /* MalugriUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8FE2301253D87E4009AE121 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8FE22EC253D87DE009AE121 /* Malugri */;
+			targetProxy = E8FE2300253D87E4009AE121 /* PBXContainerItemProxy */;
+		};
+		E8FE230C253D87E4009AE121 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8FE22EC253D87DE009AE121 /* Malugri */;
+			targetProxy = E8FE230B253D87E4009AE121 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E8FE22F6253D87E3009AE121 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8FE22F7253D87E3009AE121 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E8FE2311253D87E4009AE121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E8FE2312253D87E4009AE121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E8FE2314253D87E4009AE121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N6M3GGC92B;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Malugri/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.Malugri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E8FE2315253D87E4009AE121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N6M3GGC92B;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Malugri/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.Malugri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E8FE2317253D87E4009AE121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N6M3GGC92B;
+				INFOPLIST_FILE = MalugriTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.MalugriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Malugri.app/Contents/MacOS/Malugri";
+			};
+			name = Debug;
+		};
+		E8FE2318253D87E4009AE121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N6M3GGC92B;
+				INFOPLIST_FILE = MalugriTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.MalugriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Malugri.app/Contents/MacOS/Malugri";
+			};
+			name = Release;
+		};
+		E8FE231A253D87E4009AE121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N6M3GGC92B;
+				INFOPLIST_FILE = MalugriUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.MalugriUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Malugri;
+			};
+			name = Debug;
+		};
+		E8FE231B253D87E4009AE121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = N6M3GGC92B;
+				INFOPLIST_FILE = MalugriUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.MalugriUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Malugri;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8FE22E8253D87DE009AE121 /* Build configuration list for PBXProject "Malugri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8FE2311253D87E4009AE121 /* Debug */,
+				E8FE2312253D87E4009AE121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8FE2313253D87E4009AE121 /* Build configuration list for PBXNativeTarget "Malugri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8FE2314253D87E4009AE121 /* Debug */,
+				E8FE2315253D87E4009AE121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8FE2316253D87E4009AE121 /* Build configuration list for PBXNativeTarget "MalugriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8FE2317253D87E4009AE121 /* Debug */,
+				E8FE2318253D87E4009AE121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8FE2319253D87E4009AE121 /* Build configuration list for PBXNativeTarget "MalugriUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8FE231A253D87E4009AE121 /* Debug */,
+				E8FE231B253D87E4009AE121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8FE22E5253D87DE009AE121 /* Project object */;
+}
