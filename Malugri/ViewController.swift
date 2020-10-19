@@ -22,6 +22,24 @@ class ViewController: NSViewController {
         }
     }
 
-
+    @IBAction func stopButton(_ sender: Any) {
+        
+    }
+    @IBAction func playPause(_ sender: NSButtonCell) {
+        sender.image = NSImage.init(imageLiteralResourceName: "NSTouchBarPlayTemplate")
+    }
+    
+    @IBOutlet weak var infoBox: NSBox!
+    
+    @IBAction func expand(_ sender: NSButton) {
+        if let a = NSApplication.shared.mainWindow {
+            var newFrame: NSRect = a.frame;
+            let diff = (sender.state == NSControl.StateValue.on ?  CGFloat(162) : CGFloat(-162));
+            newFrame.size.height += diff
+            a.maxSize.height += diff;
+            a.setFrame(newFrame, display: true, animate: true)
+        }
+    }
+    
 }
 
