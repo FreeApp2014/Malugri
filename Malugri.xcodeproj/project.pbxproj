@@ -10,6 +10,7 @@
 		2104B1C253D7F1C7E0D2F5FC /* libPods-MalugriTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31253D81803F22A77A1C4922 /* libPods-MalugriTests.a */; };
 		6250253822F509D139EB4661 /* libPods-Malugri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01346F5890F05B8E81F326A1 /* libPods-Malugri.a */; };
 		968D4FF4720CE46D49087E0C /* libPods-Malugri-MalugriUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */; };
+		E852359125F6C0ED008E9270 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E852359025F6C0EC008E9270 /* README.md */; };
 		E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511825E82F0E0025F1C0 /* Util.swift */; };
 		E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511A25E830CA0025F1C0 /* AudioController.swift */; };
 		E8B6511D25E8349A0025F1C0 /* libbrstmcpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */; };
@@ -49,6 +50,7 @@
 		9C2AB1D6B5AECA43C4D501B2 /* Pods-Malugri-MalugriUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri-MalugriUITests.debug.xcconfig"; path = "Target Support Files/Pods-Malugri-MalugriUITests/Pods-Malugri-MalugriUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Malugri-MalugriUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E73BECD655570475C2BF3 /* Pods-Malugri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri.release.xcconfig"; path = "Target Support Files/Pods-Malugri/Pods-Malugri.release.xcconfig"; sourceTree = "<group>"; };
+		E852359025F6C0EC008E9270 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8B6511825E82F0E0025F1C0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E8B6511A25E830CA0025F1C0 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbrstmcpp.a; path = Malugri/libbrstmcpp.a; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		E8FE22E4253D87DE009AE121 = {
 			isa = PBXGroup;
 			children = (
+				E852359025F6C0EC008E9270 /* README.md */,
 				E8FB164325F6354700E8963A /* brstm-main.cpp */,
 				E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */,
 				E8FE22EF253D87DE009AE121 /* Malugri */,
@@ -289,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E852359125F6C0ED008E9270 /* README.md in Resources */,
 				E8FE22F5253D87E3009AE121 /* Assets.xcassets in Resources */,
 				E8FE22F8253D87E3009AE121 /* Main.storyboard in Resources */,
 			);
