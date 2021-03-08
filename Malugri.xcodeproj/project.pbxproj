@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2104B1C253D7F1C7E0D2F5FC /* libPods-MalugriTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31253D81803F22A77A1C4922 /* libPods-MalugriTests.a */; };
+		6250253822F509D139EB4661 /* libPods-Malugri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01346F5890F05B8E81F326A1 /* libPods-Malugri.a */; };
+		968D4FF4720CE46D49087E0C /* libPods-Malugri-MalugriUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */; };
+		E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511825E82F0E0025F1C0 /* Util.swift */; };
+		E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511A25E830CA0025F1C0 /* AudioController.swift */; };
+		E8B6511D25E8349A0025F1C0 /* libbrstmcpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */; };
+		E8FB164225F6244200E8963A /* AudioBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB164125F6244200E8963A /* AudioBackend.swift */; };
 		E8FE22F1253D87DE009AE121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE22F0253D87DE009AE121 /* AppDelegate.swift */; };
 		E8FE22F3253D87DE009AE121 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FE22F2253D87DE009AE121 /* ViewController.swift */; };
 		E8FE22F5253D87E3009AE121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FE22F4253D87E3009AE121 /* Assets.xcassets */; };
@@ -33,6 +40,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01346F5890F05B8E81F326A1 /* libPods-Malugri.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Malugri.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		177BBAFB30BB9C125099DF42 /* Pods-MalugriTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MalugriTests.release.xcconfig"; path = "Target Support Files/Pods-MalugriTests/Pods-MalugriTests.release.xcconfig"; sourceTree = "<group>"; };
+		1ACBD8D1DF3CA629761119DB /* Pods-Malugri-MalugriUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri-MalugriUITests.release.xcconfig"; path = "Target Support Files/Pods-Malugri-MalugriUITests/Pods-Malugri-MalugriUITests.release.xcconfig"; sourceTree = "<group>"; };
+		31253D81803F22A77A1C4922 /* libPods-MalugriTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MalugriTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EB2FC4B4D16AD30D6895546 /* Pods-Malugri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri.debug.xcconfig"; path = "Target Support Files/Pods-Malugri/Pods-Malugri.debug.xcconfig"; sourceTree = "<group>"; };
+		8DDE3B6C97BE8C927ACD5C28 /* Pods-MalugriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MalugriTests.debug.xcconfig"; path = "Target Support Files/Pods-MalugriTests/Pods-MalugriTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9C2AB1D6B5AECA43C4D501B2 /* Pods-Malugri-MalugriUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri-MalugriUITests.debug.xcconfig"; path = "Target Support Files/Pods-Malugri-MalugriUITests/Pods-Malugri-MalugriUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Malugri-MalugriUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40E73BECD655570475C2BF3 /* Pods-Malugri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri.release.xcconfig"; path = "Target Support Files/Pods-Malugri/Pods-Malugri.release.xcconfig"; sourceTree = "<group>"; };
+		E8B6511825E82F0E0025F1C0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		E8B6511A25E830CA0025F1C0 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbrstmcpp.a; path = Malugri/libbrstmcpp.a; sourceTree = "<group>"; };
+		E8B6511E25E834E80025F1C0 /* Malugri-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Malugri-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8FB164125F6244200E8963A /* AudioBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBackend.swift; sourceTree = "<group>"; };
+		E8FB164325F6354700E8963A /* brstm-main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "brstm-main.cpp"; path = "Malugri/brstm-main.cpp"; sourceTree = "<group>"; };
 		E8FE22ED253D87DE009AE121 /* Malugri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Malugri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE22F0253D87DE009AE121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8FE22F2253D87DE009AE121 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B6511D25E8349A0025F1C0 /* libbrstmcpp.a in Frameworks */,
+				6250253822F509D139EB4661 /* libPods-Malugri.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2104B1C253D7F1C7E0D2F5FC /* libPods-MalugriTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,19 +92,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				968D4FF4720CE46D49087E0C /* libPods-Malugri-MalugriUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40BAF6D0362FB199FAF64189 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01346F5890F05B8E81F326A1 /* libPods-Malugri.a */,
+				A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */,
+				31253D81803F22A77A1C4922 /* libPods-MalugriTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71C8622F474A64E698C7DBA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6EB2FC4B4D16AD30D6895546 /* Pods-Malugri.debug.xcconfig */,
+				D40E73BECD655570475C2BF3 /* Pods-Malugri.release.xcconfig */,
+				9C2AB1D6B5AECA43C4D501B2 /* Pods-Malugri-MalugriUITests.debug.xcconfig */,
+				1ACBD8D1DF3CA629761119DB /* Pods-Malugri-MalugriUITests.release.xcconfig */,
+				8DDE3B6C97BE8C927ACD5C28 /* Pods-MalugriTests.debug.xcconfig */,
+				177BBAFB30BB9C125099DF42 /* Pods-MalugriTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E8FE22E4253D87DE009AE121 = {
 			isa = PBXGroup;
 			children = (
+				E8FB164325F6354700E8963A /* brstm-main.cpp */,
+				E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */,
 				E8FE22EF253D87DE009AE121 /* Malugri */,
 				E8FE2302253D87E4009AE121 /* MalugriTests */,
 				E8FE230D253D87E4009AE121 /* MalugriUITests */,
 				E8FE22EE253D87DE009AE121 /* Products */,
+				E8B6511E25E834E80025F1C0 /* Malugri-Bridging-Header.h */,
+				71C8622F474A64E698C7DBA2 /* Pods */,
+				40BAF6D0362FB199FAF64189 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +156,9 @@
 				E8FE22F6253D87E3009AE121 /* Main.storyboard */,
 				E8FE22F9253D87E3009AE121 /* Info.plist */,
 				E8FE22FA253D87E3009AE121 /* Malugri.entitlements */,
+				E8B6511825E82F0E0025F1C0 /* Util.swift */,
+				E8B6511A25E830CA0025F1C0 /* AudioController.swift */,
+				E8FB164125F6244200E8963A /* AudioBackend.swift */,
 			);
 			path = Malugri;
 			sourceTree = "<group>";
@@ -131,6 +188,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8FE2313253D87E4009AE121 /* Build configuration list for PBXNativeTarget "Malugri" */;
 			buildPhases = (
+				6A509F4F042286C033E18E12 /* [CP] Check Pods Manifest.lock */,
 				E8FE22E9253D87DE009AE121 /* Sources */,
 				E8FE22EA253D87DE009AE121 /* Frameworks */,
 				E8FE22EB253D87DE009AE121 /* Resources */,
@@ -148,6 +206,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8FE2316253D87E4009AE121 /* Build configuration list for PBXNativeTarget "MalugriTests" */;
 			buildPhases = (
+				680EB98962BF65EDCB84C5C2 /* [CP] Check Pods Manifest.lock */,
 				E8FE22FB253D87E4009AE121 /* Sources */,
 				E8FE22FC253D87E4009AE121 /* Frameworks */,
 				E8FE22FD253D87E4009AE121 /* Resources */,
@@ -166,6 +225,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8FE2319253D87E4009AE121 /* Build configuration list for PBXNativeTarget "MalugriUITests" */;
 			buildPhases = (
+				1AB844BBF5E7A650A75B0149 /* [CP] Check Pods Manifest.lock */,
 				E8FE2306253D87E4009AE121 /* Sources */,
 				E8FE2307253D87E4009AE121 /* Frameworks */,
 				E8FE2308253D87E4009AE121 /* Resources */,
@@ -192,6 +252,7 @@
 				TargetAttributes = {
 					E8FE22EC253D87DE009AE121 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					E8FE22FE253D87E4009AE121 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -249,12 +310,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1AB844BBF5E7A650A75B0149 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Malugri-MalugriUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		680EB98962BF65EDCB84C5C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MalugriTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A509F4F042286C033E18E12 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Malugri-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E8FE22E9253D87DE009AE121 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E8FE22F3253D87DE009AE121 /* ViewController.swift in Sources */,
+				E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */,
+				E8FB164225F6244200E8963A /* AudioBackend.swift in Sources */,
+				E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */,
 				E8FE22F1253D87DE009AE121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,8 +550,10 @@
 		};
 		E8FE2314253D87E4009AE121 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB2FC4B4D16AD30D6895546 /* Pods-Malugri.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -429,16 +564,44 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Malugri",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"EZAudio\"",
+					"-l\"TPCircularBuffer\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"AudioUnit\"",
+					"-framework",
+					"\"CoreAudio\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"OpenGL\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.Malugri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Malugri-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		E8FE2315253D87E4009AE121 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D40E73BECD655570475C2BF3 /* Pods-Malugri.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -449,14 +612,40 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Malugri",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"EZAudio\"",
+					"-l\"TPCircularBuffer\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"AudioUnit\"",
+					"-framework",
+					"\"CoreAudio\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"OpenGL\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = space.freeappsw.Malugri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Malugri-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		E8FE2317253D87E4009AE121 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DDE3B6C97BE8C927ACD5C28 /* Pods-MalugriTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -479,6 +668,7 @@
 		};
 		E8FE2318253D87E4009AE121 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 177BBAFB30BB9C125099DF42 /* Pods-MalugriTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,6 +691,7 @@
 		};
 		E8FE231A253D87E4009AE121 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C2AB1D6B5AECA43C4D501B2 /* Pods-Malugri-MalugriUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -521,6 +712,7 @@
 		};
 		E8FE231B253D87E4009AE121 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1ACBD8D1DF3CA629761119DB /* Pods-Malugri-MalugriUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
