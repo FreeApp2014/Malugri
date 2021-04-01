@@ -715,7 +715,7 @@
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlL-US-cR5">
                                 <rect key="frame" x="49" y="211" width="390" height="19"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="sbP-Sy-szI"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="sbP-Sy-szI"/>
                             </slider>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWI-Gw-ZCY">
                                 <rect key="frame" x="446" y="172" width="27" height="26"/>
@@ -750,7 +750,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0m-z5-PtR">
                                 <rect key="frame" x="191" y="178" width="252" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="right" title="BRSTM ・44100 Hz" id="VJW-QI-gTW">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="right" id="VJW-QI-gTW">
                                     <font key="font" metaFont="systemMedium" size="13"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -860,7 +860,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-Vj-abZ">
                                             <rect key="frame" x="67" y="119" width="111" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="iKB-vO-1p0">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="iKB-vO-1p0">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -869,7 +869,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="skq-9q-nZG">
                                             <rect key="frame" x="285" y="119" width="172" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="Epk-H7-inA">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="Epk-H7-inA">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -878,7 +878,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ulc-J5-3OA">
                                             <rect key="frame" x="55" y="95" width="123" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="SDF-fa-XdU">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="SDF-fa-XdU">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -887,7 +887,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Lz-s3-1Pi">
                                             <rect key="frame" x="95" y="71" width="83" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="1Nj-5i-Qoj">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="1Nj-5i-Qoj">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -896,7 +896,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vdp-VM-RCy">
                                             <rect key="frame" x="79" y="47" width="99" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="he7-LX-Tnv">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="he7-LX-Tnv">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -905,7 +905,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1r-ew-hoT">
                                             <rect key="frame" x="95" y="23" width="83" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="meO-kY-tbo">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="meO-kY-tbo">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -916,13 +916,12 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="zJr-6K-h1h">
                                                 <font key="font" metaFont="system"/>
-                                                <url key="url" string="file://localhost/Applications/"/>
                                             </pathCell>
                                         </pathControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPa-gJ-XGU">
                                             <rect key="frame" x="285" y="95" width="172" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="liS-T4-UCL">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="liS-T4-UCL">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -931,9 +930,19 @@
                                     </subviews>
                                 </view>
                             </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3w9-as-xfL">
+                                <rect key="frame" x="110" y="178" width="99" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" id="JBu-Qf-r82">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="ElapsedTimeLabel" destination="3w9-as-xfL" id="fbU-4c-Ahu"/>
                         <outlet property="blockSizeLbl" destination="F1r-ew-hoT" id="n1H-Dg-EIM"/>
                         <outlet property="codecLbl" destination="pLq-Vj-abZ" id="eXY-UH-CzP"/>
                         <outlet property="durationLbl" destination="vdp-VM-RCy" id="UpR-kn-ir7"/>
@@ -942,6 +951,7 @@
                         <outlet property="loopBoolLbl" destination="Ulc-J5-3OA" id="Zkd-X9-Fmb"/>
                         <outlet property="loopPointLbl" destination="4Lz-s3-1Pi" id="Xof-vF-qrk"/>
                         <outlet property="overviewLbl" destination="w0m-z5-PtR" id="rFT-iU-wLE"/>
+                        <outlet property="timeSlider" destination="hlL-US-cR5" id="W2n-ql-ATu"/>
                         <outlet property="totalBlocksLbl" destination="skq-9q-nZG" id="jdD-Na-9nd"/>
                         <outlet property="totalSamplesLbl" destination="iPa-gJ-XGU" id="WcU-5g-ol7"/>
                     </connections>

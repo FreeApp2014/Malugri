@@ -22,6 +22,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var fileLocation: NSPathControl!
     @IBOutlet weak var totalBlocksLbl: NSTextField!
     @IBOutlet weak var totalSamplesLbl: NSTextField!
+    @IBOutlet weak var timeSlider: NSSlider!
+    @IBOutlet weak var ElapsedTimeLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,16 +59,28 @@ class ViewController: NSViewController {
             if let a = NSApplication.shared.mainWindow {
                 a.title = String(path.split(separator: "/").last ?? "<unknown>") + " - Malugri";
             }
-            } catch MGError.brstmReadError(let code, description) {
-                   MalugriUtil.popupAlert(title: "Error opening file" ,
-                                          message: "brstm_read: " + description + " (code " + String(code) + ")");
-            } catch MGError.ifstreamError(let code) {
-                   MalugriUtil.popupAlert(title: "Error opening file",
-                                          message: "ifstream::open returned error code " + String(code))
-            } catch {
-                MalugriUtil.popupAlert(title: "Internal error",
-                                        message: "An unexpected error has occurred.")
+            self.timeSlider.minValue = 0.0;
+            self.timeSlider.maxValue = Double(self.playerController.fileInformation.totalSamples);
+            DispatchQueue.global().async {
+                while (self.playerController.backend.state) {
+                    DispatchQueue.main.async {
+                        self.ElapsedTimeLabel.stringValue = Int(self.playerController.backend.currentSampleNumber / self.playerController.fileInformation.sampleRate).hmsString;
+                        self.timeSlider.floatValue = Float(self.playerController.backend.currentSampleNumber);
+                    }
+                    Thread.sleep(forTimeInterval: 0.25);
+                }
             }
+
+        } catch MGError.brstmReadError(let code, description) {
+                MalugriUtil.popupAlert(title: "Error opening file" ,
+                                          message: "brstm_read: " + description + " (code " + String(code) + ")");
+        } catch MGError.ifstreamError(let code) {
+                MalugriUtil.popupAlert(title: "Error opening file",
+                                          message: "ifstream::open returned error code " + String(code))
+        } catch {
+            MalugriUtil.popupAlert(title: "Internal error",
+                                        message: "An unexpected error has occurred.")
+        }
     }
     
     @IBAction func openButton(_ sender: Any) {

@@ -56,7 +56,6 @@
 		E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbrstmcpp.a; path = Malugri/libbrstmcpp.a; sourceTree = "<group>"; };
 		E8B6511E25E834E80025F1C0 /* Malugri-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Malugri-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8FB164125F6244200E8963A /* AudioBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBackend.swift; sourceTree = "<group>"; };
-		E8FB164325F6354700E8963A /* brstm-main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "brstm-main.cpp"; path = "Malugri/brstm-main.cpp"; sourceTree = "<group>"; };
 		E8FE22ED253D87DE009AE121 /* Malugri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Malugri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE22F0253D87DE009AE121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8FE22F2253D87DE009AE121 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				E852359025F6C0EC008E9270 /* README.md */,
-				E8FB164325F6354700E8963A /* brstm-main.cpp */,
 				E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */,
 				E8FE22EF253D87DE009AE121 /* Malugri */,
 				E8FE2302253D87E4009AE121 /* MalugriTests */,
@@ -572,6 +570,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Malugri",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"EZAudio\"",
@@ -620,6 +619,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Malugri",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-l\"EZAudio\"",
