@@ -10,6 +10,9 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    // MARK: - IB Outlets
+    
+    @IBOutlet weak var infoBox: NSBox!
     
     // MARK: - Labels
     
@@ -24,6 +27,15 @@ class ViewController: NSViewController {
     @IBOutlet weak var totalSamplesLbl: NSTextField!
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var ElapsedTimeLabel: NSTextField!
+    
+    // MARK: - Buttons
+    
+    @IBOutlet weak var playPauseButton: NSButton!
+    @IBOutlet weak var stopBtn: NSButton!
+    @IBOutlet weak var openButton: NSButton!
+    @IBOutlet weak var expandButton: NSButton!
+    
+    // MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +95,8 @@ class ViewController: NSViewController {
         }
     }
     
+    // MARK: - IB Actions
+    
     @IBAction func openButton(_ sender: Any) {
         let filePicker = NSOpenPanel();
             filePicker.allowsMultipleSelection = false;
@@ -91,8 +105,15 @@ class ViewController: NSViewController {
             if (filePicker.runModal() == NSApplication.ModalResponse.OK){
                 let fileUri = filePicker.url;
                 if (fileUri != nil){
+                    if (self.playerController.currentFile != nil) {
+                        self.stopButton(self.stopBtn!);
+                    }
                     let path = fileUri!.path;
-                    handleFile(path: path)
+                    handleFile(path: path);
+                    self.playPauseButton.isEnabled = true;
+                    self.stopBtn.isEnabled = true;
+                    self.expandButton.isEnabled = true;
+                    self.timeSlider.isEnabled = true;
                 }
             }
     }
@@ -100,6 +121,12 @@ class ViewController: NSViewController {
     @IBAction func stopButton(_ sender: Any) {
         self.playerController.backend.stop();
         self.playerController.closeFile();
+        self.playPauseButton.isEnabled = false;
+        self.stopBtn.isEnabled = false;
+        self.expandButton.isEnabled = false;
+        self.timeSlider.isEnabled = false;
+        self.timeSlider.floatValue = 0.0;
+        self.playPauseButton.image = NSImage.init(imageLiteralResourceName: "NSTouchBarPauseTemplate");
     }
     
     @IBAction func playPause(_ sender: NSButtonCell) {
@@ -107,7 +134,6 @@ class ViewController: NSViewController {
         self.playerController.backend.state ? self.playerController.backend.pause() : self.playerController.backend.resume();
     }
     
-    @IBOutlet weak var infoBox: NSBox!
     
     @IBAction func expand(_ sender: NSButton) {
         if let a = NSApplication.shared.mainWindow {
@@ -120,4 +146,7 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func changePosition(_ sender: Any) {
+        self.playerController.backend.currentSampleNumber = UInt((sender as! NSSlider).floatValue);
+    }
 }

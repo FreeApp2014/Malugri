@@ -715,12 +715,15 @@
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlL-US-cR5">
                                 <rect key="frame" x="49" y="211" width="390" height="19"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="sbP-Sy-szI"/>
+                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="sbP-Sy-szI"/>
+                                <connections>
+                                    <action selector="changePosition:" target="XfG-lQ-9wD" id="Av7-jg-LVr"/>
+                                </connections>
                             </slider>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWI-Gw-ZCY">
                                 <rect key="frame" x="446" y="172" width="27" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xkC-P1-Mhd">
+                                <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xkC-P1-Mhd">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -739,7 +742,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e4P-MV-Wuw">
                                 <rect key="frame" x="7" y="204" width="36" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarPauseTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gG1-fT-QyO">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarPauseTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gG1-fT-QyO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -770,7 +773,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a9Y-nU-IPp">
                                 <rect key="frame" x="76" y="174" width="28" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarRecordStopTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zRJ-TP-OBI">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarRecordStopTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zRJ-TP-OBI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -946,11 +949,17 @@
                         <outlet property="blockSizeLbl" destination="F1r-ew-hoT" id="n1H-Dg-EIM"/>
                         <outlet property="codecLbl" destination="pLq-Vj-abZ" id="eXY-UH-CzP"/>
                         <outlet property="durationLbl" destination="vdp-VM-RCy" id="UpR-kn-ir7"/>
+                        <outlet property="expandButton" destination="FWI-Gw-ZCY" id="8aZ-te-9v2"/>
                         <outlet property="fileLocation" destination="vBA-y4-PC8" id="wqx-0d-DHA"/>
                         <outlet property="infoBox" destination="7ih-H8-c8y" id="SVi-r1-COk"/>
                         <outlet property="loopBoolLbl" destination="Ulc-J5-3OA" id="Zkd-X9-Fmb"/>
                         <outlet property="loopPointLbl" destination="4Lz-s3-1Pi" id="Xof-vF-qrk"/>
+                        <outlet property="openButton" destination="nxO-2v-eQr" id="dHV-Ge-hJq"/>
                         <outlet property="overviewLbl" destination="w0m-z5-PtR" id="rFT-iU-wLE"/>
+                        <outlet property="playPauseButton" destination="e4P-MV-Wuw" id="MhR-23-G0v"/>
+                        <outlet property="progressBar" destination="hlL-US-cR5" id="4na-8p-ujp"/>
+                        <outlet property="stopBtn" destination="a9Y-nU-IPp" id="p6B-dW-1lT"/>
+                        <outlet property="stopButton" destination="a9Y-nU-IPp" id="vOy-0i-SP4"/>
                         <outlet property="timeSlider" destination="hlL-US-cR5" id="W2n-ql-ATu"/>
                         <outlet property="totalBlocksLbl" destination="skq-9q-nZG" id="jdD-Na-9nd"/>
                         <outlet property="totalSamplesLbl" destination="iPa-gJ-XGU" id="WcU-5g-ol7"/>
