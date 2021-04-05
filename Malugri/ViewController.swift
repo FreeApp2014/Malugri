@@ -56,6 +56,10 @@ class ViewController: NSViewController {
     
     @objc func notify(_ sender: Notification) -> Void {
         handleFile(path: sender.object! as! String);
+        self.playPauseButton.isEnabled = true;
+        self.stopBtn.isEnabled = true;
+        self.expandButton.isEnabled = true;
+        self.timeSlider.isEnabled = true;
     }
     
     var playerController = MalugriPlayer(using: MGEZAudioBackend());
