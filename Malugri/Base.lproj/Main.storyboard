@@ -957,9 +957,7 @@
                         <outlet property="openButton" destination="nxO-2v-eQr" id="dHV-Ge-hJq"/>
                         <outlet property="overviewLbl" destination="w0m-z5-PtR" id="rFT-iU-wLE"/>
                         <outlet property="playPauseButton" destination="e4P-MV-Wuw" id="MhR-23-G0v"/>
-                        <outlet property="progressBar" destination="hlL-US-cR5" id="4na-8p-ujp"/>
                         <outlet property="stopBtn" destination="a9Y-nU-IPp" id="p6B-dW-1lT"/>
-                        <outlet property="stopButton" destination="a9Y-nU-IPp" id="vOy-0i-SP4"/>
                         <outlet property="timeSlider" destination="hlL-US-cR5" id="W2n-ql-ATu"/>
                         <outlet property="totalBlocksLbl" destination="skq-9q-nZG" id="jdD-Na-9nd"/>
                         <outlet property="totalSamplesLbl" destination="iPa-gJ-XGU" id="WcU-5g-ol7"/>

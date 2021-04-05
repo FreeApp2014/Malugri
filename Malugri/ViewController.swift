@@ -45,12 +45,17 @@ class ViewController: NSViewController {
             b.size.height = a.minSize.height;
             a.setFrame(b, display: true, animate: false)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(notify(_:)), name: Notification.Name("file"), object: nil);
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    @objc func notify(_ sender: Notification) -> Void {
+        handleFile(path: sender.object! as! String);
     }
     
     var playerController = MalugriPlayer(using: MGEZAudioBackend());
