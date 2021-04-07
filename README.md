@@ -1,6 +1,6 @@
 # Malugri
-<img src="https://www.freeappsw.space/asset/Malugri.svg" width=256 alt=logo><br />
-A native Cocoa-based Nintendo VGM format audio player app for macOS. Based on [Extrasklep's OpenRevolution library](https://github.com/Extrasklep/openrevolution) for format support and uses AVFoundation for playing audio.
+<img src="https://binarythinker.dev/asset/Malugri.svg" width=256 alt=logo><br />
+A native Cocoa-based Nintendo VGM format audio player app for macOS. Based on [IC's OpenRevolution library](https://github.com/ic-scm/openrevolution) for format support and uses AVFoundation for playing audio.
 
 ## Usage
 
@@ -22,7 +22,7 @@ Malugri can convert BRSTM/BFSTM/BWAV files to int16 PCM WAV files. Using this fe
 * Integration with [SCM Archive](https://smashcustommusic.net)
 
 ## Screenshot
- ![main window screenshot](https://scr.freeappsw.space/malugriappgh.png)
+ ![main window screenshot](https://binarythinker.dev/asset/malugriappgh-old.png)
 
 ## Special Thanks
-* [Gianmarco Gargiulo](https://www.gianmarco.ga/) for the logo ( [SVG](https://www.freeappsw.space/asset/Malugri.svg) / [PNG 2048px](https://www.freeappsw.space/asset/Malugri.svg.png))
+* [Gianmarco Gargiulo](https://www.gianmarco.ga/) for the logo ( [SVG](https://binarythinker.dev/asset/Malugri.svg) / [PNG 2048px](https://binarythinker.dev/asset/Malugri.svg.png))
