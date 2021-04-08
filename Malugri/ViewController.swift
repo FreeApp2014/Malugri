@@ -35,6 +35,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var openButton: NSButton!
     @IBOutlet weak var expandButton: NSButton!
     
+    // TODO: Handle the loop button
+    
     // MARK: - Methods
     
     override func viewDidLoad() {
@@ -81,7 +83,7 @@ class ViewController: NSViewController {
                 a.title = String(path.split(separator: "/").last ?? "<unknown>") + " - Malugri";
             }
             self.timeSlider.minValue = 0.0;
-            self.timeSlider.maxValue = Double(self.playerController.fileInformation.totalSamples);
+            self.timeSlider.maxValue = Double(self.playerController.fileInformation.totalSamples - 1);
             DispatchQueue.global().async {
                 while (self.playerController.backend.state) {
                     DispatchQueue.main.async {
@@ -109,7 +111,7 @@ class ViewController: NSViewController {
     @IBAction func openButton(_ sender: Any) {
         let filePicker = NSOpenPanel();
             filePicker.allowsMultipleSelection = false;
-            filePicker.allowedFileTypes = ["brstm", "bwav", "bfstm", "bcstm"];
+        filePicker.allowedFileTypes = ["brstm", "bwav", "bfstm", "bcstm", "bcwav", "bfwav"];
             filePicker.allowsOtherFileTypes = false;
             if (filePicker.runModal() == NSApplication.ModalResponse.OK){
                 let fileUri = filePicker.url;
@@ -136,6 +138,10 @@ class ViewController: NSViewController {
         self.timeSlider.isEnabled = false;
         self.timeSlider.floatValue = 0.0;
         self.playPauseButton.image = NSImage.init(imageLiteralResourceName: "NSTouchBarPauseTemplate");
+        self.overviewLbl.stringValue = "";
+        if let a = NSApplication.shared.mainWindow {
+            a.title = "Malugri";
+        }
     }
     
     @IBAction func playPause(_ sender: NSButtonCell) {

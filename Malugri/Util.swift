@@ -28,6 +28,9 @@ class MalugriUtil {
         case 3: return "BFSTM";
         case 4: return "BWAV";
         case 5: return "ORSTM";
+        case 6: return "BRWAV";
+        case 7: return "BCWAV";
+        case 8: return "BFWAV";
         default: return "Unknown format";
         }
     }

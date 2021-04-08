@@ -23,7 +23,7 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
                                                                                                 mBytesPerPacket: 4,
                                                                                                 mFramesPerPacket: 1,
                                                                                                 mBytesPerFrame: 4,
-                                                                                                mChannelsPerFrame: UInt32(format.channelCount),
+                                                                                                mChannelsPerFrame: 2,
                                                                                                 mBitsPerChannel: 16,
                                                                                                 mReserved: 0));
         var b: UInt32 = 4096; //Frame per slice value for the audio unit
@@ -37,6 +37,7 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
                                                           &b,
                                                           UInt32(MemoryLayout.size(ofValue: b))),
                                      operation: "Failed to set maximum frames per slice on mixer node".cString(using: .utf8));
+        pState = CurrentPlayingBrstm(chCount: gHEAD3_num_channels(0), lChId: gLChId(0), rChId: gHEAD3_num_channels(0) == 2 ? gRChId(0) : gLChId(0))
     }
     
     var needsLoop: Bool {
@@ -104,8 +105,8 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
         let audioBuffer: UnsafeMutablePointer<Int16> = audioBufferList[0].mBuffers.mData!.assumingMemoryBound(to: Int16.self);
         var i = 0, j = 0;
         while (i < frames*2){
-            audioBuffer[Int(i)] = samples![0]![j];
-            audioBuffer[Int(i)+1] = samples![0]![j]
+            audioBuffer[Int(i)] = samples![Int(pState.lChId)]![j];
+            audioBuffer[Int(i)+1] = samples![Int(pState.rChId)]![j]
             i+=2;
             j+=1;
         }
@@ -115,3 +116,11 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
     
 }
 
+// MARK: - The store for current track being played and channel layouts
+// TODO: Add interfacing with these values in the MGAudioBackend protocol, and the main MalugriPlayer core
+
+fileprivate struct CurrentPlayingBrstm {
+    var chCount, lChId, rChId: UInt32;
+}
+
+fileprivate var pState = CurrentPlayingBrstm(chCount: gHEAD3_num_channels(0), lChId: gLChId(0), rChId: gHEAD3_num_channels(0) == 2 ? gRChId(0) : gLChId(0))

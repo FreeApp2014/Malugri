@@ -36,7 +36,7 @@ class MalugriPlayer {
                                      codecString: MalugriUtil.resolveAudioCodec(UInt(gFileCodec())),
                                      sampleRate: gHEAD1_sample_rate(), looping: gHEAD1_loop() == 1,
                                      duration: Int(floor(Double(gHEAD1_total_samples()) / Double(gHEAD1_sample_rate()))),
-                                     channelCount: UInt(gHEAD3_num_channels()),
+                                     channelCount: UInt(gHEAD3_num_channels(0)),
                                      totalSamples: gHEAD1_total_samples(),
                                      loopPoint: gHEAD1_loop_start(),
                                      blockSize: gHEAD1_blocks_samples(),
