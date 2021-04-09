@@ -76,6 +76,7 @@ class MalugriPlayer {
 
 protocol MGAudioBackend {
     var currentSampleNumber: UInt { get set };
+    var currentTrack: UInt32 { get set };
     func initialize (format: MGFileInformation) -> Void;
     func resume() -> Void;
     func pause() -> Void;

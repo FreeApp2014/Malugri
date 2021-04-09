@@ -69,8 +69,9 @@ class ViewController: NSViewController {
     func handleFile(path: String){
          do {
             try playerController.loadFile(file: path);
+            playerController.backend.needsLoop = playerController.fileInformation.looping;
             playerController.backend.play();
-            self.overviewLbl.stringValue = self.playerController.fileInformation.fileType + "・" + String(self.playerController.fileInformation.sampleRate) + " Hz";
+            self.overviewLbl.stringValue = self.playerController.fileInformation.fileType + "・" + (gHEAD3_num_channels(Int32(playerController.backend.currentTrack)) == 1 ? "Mono" : " Stereo" ) + "・" + String(self.playerController.fileInformation.sampleRate) + " Hz";
             self.codecLbl.stringValue = self.playerController.fileInformation.codecString;
             self.loopBoolLbl.stringValue = self.playerController.fileInformation.looping ? "Yes" : "No";
             self.loopPointLbl.stringValue = String(self.playerController.fileInformation.loopPoint);

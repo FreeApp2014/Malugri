@@ -82,6 +82,18 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
         if (self.state) {output!.stopPlayback();}
         dataSource.counter = 0;
     }
+    
+    private var _ctN: UInt32 = 0;
+    
+    var currentTrack: UInt32 {
+        get {
+            return _ctN;
+        }
+        set (a) {
+            _ctN = a;
+            pState = CurrentPlayingBrstm(chCount: gHEAD3_num_channels(Int32(a)), lChId: gLChId(Int32(a)), rChId: gHEAD3_num_channels(Int32(a)) == 2 ? gRChId(Int32(a)) : gLChId(Int32(a)))
+        }
+    }
 }
 
 // MARK: - Data source
@@ -90,34 +102,69 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
     
     public var counter: UInt = 0;
     public var needLoop: Bool = true;
+    
+    // MARK: - The data source callback function
     func output(_ output: EZOutput!,
                 shouldFill audioBufferList: UnsafeMutablePointer<AudioBufferList>!,
                 withNumberOfFrames frames: UInt32,
                 timestamp: UnsafePointer<AudioTimeStamp>!) -> OSStatus {
-        if (counter > gHEAD1_total_samples()) {
+        
+        // Check whether the counter is on loop point
+        if (counter >= gHEAD1_total_samples()) {
             if (needLoop) {
                 counter = gHEAD1_loop_start();
             } else {
                 output.stopPlayback();
             }
         }
-        let samples = getbuffer(counter, frames);
-        let audioBuffer: UnsafeMutablePointer<Int16> = audioBufferList[0].mBuffers.mData!.assumingMemoryBound(to: Int16.self);
-        var i = 0, j = 0;
-        while (i < frames*2){
-            audioBuffer[Int(i)] = samples![Int(pState.lChId)]![j];
-            audioBuffer[Int(i)+1] = samples![Int(pState.rChId)]![j]
-            i+=2;
-            j+=1;
+        // Check whether the file has less samples than requested so that the loop can be seamless. Only applies to looping situation.
+        if (frames > gHEAD1_total_samples() - counter && needLoop){
+            // Number of samples that can be read from the file before over-read
+            let supportedNo = UInt32(gHEAD1_total_samples() - counter);
+            
+            // Start with filling the buffer with the remainder of the file
+            var samples = getbuffer(counter, supportedNo);
+            let audioBuffer: UnsafeMutablePointer<Int16> = audioBufferList[0].mBuffers.mData!.assumingMemoryBound(to: Int16.self);
+            var i = 0, j = 0;
+            while (i < (supportedNo)*2){
+                audioBuffer[Int(i)] = samples![Int(pState.lChId)]![j];
+                audioBuffer[Int(i)+1] = samples![Int(pState.rChId)]![j]
+                i+=2;
+                j+=1;
+            }
+            
+            // Reset the counter to the loop point
+            counter = gHEAD1_loop_start();
+            
+            // Fill the remainder of the buffer with new portion of the file
+            samples = getbuffer(counter, frames - supportedNo);
+            j = 0;
+            while (i < frames*2){
+                audioBuffer[Int(i)] = samples![Int(pState.lChId)]![j];
+                audioBuffer[Int(i)+1] = samples![Int(pState.rChId)]![j]
+                i+=2;
+                j+=1;
+            }
+            // Correctly increment the counter
+            counter += UInt(frames - supportedNo);
+        } else { // Play normally (gets called most of the time)
+            let samples = getbuffer(counter, frames);
+            let audioBuffer: UnsafeMutablePointer<Int16> = audioBufferList[0].mBuffers.mData!.assumingMemoryBound(to: Int16.self);
+            var i = 0, j = 0;
+            while (i < frames*2){
+                audioBuffer[Int(i)] = samples![Int(pState.lChId)]![j];
+                audioBuffer[Int(i)+1] = samples![Int(pState.rChId)]![j]
+                i+=2;
+                j+=1;
+            }
+            counter += UInt(frames);
         }
-        counter += UInt(frames);
         return noErr;
     }
     
 }
 
 // MARK: - The store for current track being played and channel layouts
-// TODO: Add interfacing with these values in the MGAudioBackend protocol, and the main MalugriPlayer core
 
 fileprivate struct CurrentPlayingBrstm {
     var chCount, lChId, rChId: UInt32;
