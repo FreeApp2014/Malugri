@@ -115,6 +115,7 @@ class MGEZAudioBackend: NSObject, MGAudioBackend {
                 counter = gHEAD1_loop_start();
             } else {
                 output.stopPlayback();
+                return noErr;
             }
         }
         // Check whether the file has less samples than requested so that the loop can be seamless. Only applies to looping situation.

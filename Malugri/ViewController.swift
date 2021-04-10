@@ -57,6 +57,9 @@ class ViewController: NSViewController {
     }
     
     @objc func notify(_ sender: Notification) -> Void {
+        if (self.playerController.currentFile != nil) {
+            self.stopButton(self.stopBtn!);
+        }
         handleFile(path: sender.object! as! String);
         self.playPauseButton.isEnabled = true;
         self.stopBtn.isEnabled = true;
@@ -71,7 +74,7 @@ class ViewController: NSViewController {
             try playerController.loadFile(file: path);
             playerController.backend.needsLoop = playerController.fileInformation.looping;
             playerController.backend.play();
-            self.overviewLbl.stringValue = self.playerController.fileInformation.fileType + "・" + (gHEAD3_num_channels(Int32(playerController.backend.currentTrack)) == 1 ? "Mono" : " Stereo" ) + "・" + String(self.playerController.fileInformation.sampleRate) + " Hz";
+            self.overviewLbl.stringValue = self.playerController.fileInformation.fileType + "・" + (gHEAD3_num_channels(Int32(playerController.backend.currentTrack)) == 1 ? "Mono" : "Stereo" ) + "・" + String(self.playerController.fileInformation.sampleRate) + " Hz";
             self.codecLbl.stringValue = self.playerController.fileInformation.codecString;
             self.loopBoolLbl.stringValue = self.playerController.fileInformation.looping ? "Yes" : "No";
             self.loopPointLbl.stringValue = String(self.playerController.fileInformation.loopPoint);
@@ -147,7 +150,20 @@ class ViewController: NSViewController {
     
     @IBAction func playPause(_ sender: NSButtonCell) {
         sender.image = self.playerController.backend.state ? NSImage.init(imageLiteralResourceName: "NSTouchBarPlayTemplate") : NSImage.init(imageLiteralResourceName: "NSTouchBarPauseTemplate");
-        self.playerController.backend.state ? self.playerController.backend.pause() : self.playerController.backend.resume();
+        if (self.playerController.backend.state) {
+            self.playerController.backend.pause();
+        } else {
+            self.playerController.backend.resume();
+            DispatchQueue.global().async {
+                       while (self.playerController.backend.state) {
+                           DispatchQueue.main.async {
+                               self.ElapsedTimeLabel.stringValue = Int(self.playerController.backend.currentSampleNumber / self.playerController.fileInformation.sampleRate).hmsString;
+                               self.timeSlider.floatValue = Float(self.playerController.backend.currentSampleNumber);
+                           }
+                           Thread.sleep(forTimeInterval: 0.25);
+                       }
+                   }
+        }
     }
     
     

@@ -55,6 +55,7 @@
 		E8B6511A25E830CA0025F1C0 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbrstmcpp.a; path = Malugri/libbrstmcpp.a; sourceTree = "<group>"; };
 		E8B6511E25E834E80025F1C0 /* Malugri-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Malugri-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8DEA29F262083B20010EA5F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		E8FB164125F6244200E8963A /* AudioBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBackend.swift; sourceTree = "<group>"; };
 		E8FE22ED253D87DE009AE121 /* Malugri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Malugri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE22F0253D87DE009AE121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 				1ACBD8D1DF3CA629761119DB /* Pods-Malugri-MalugriUITests.release.xcconfig */,
 				8DDE3B6C97BE8C927ACD5C28 /* Pods-MalugriTests.debug.xcconfig */,
 				177BBAFB30BB9C125099DF42 /* Pods-MalugriTests.release.xcconfig */,
+				E8DEA29F262083B20010EA5F /* .gitignore */,
 			);
 			path = Pods;
 			sourceTree = "<group>";

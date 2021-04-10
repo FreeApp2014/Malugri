@@ -39,6 +39,8 @@
 			<array>
 				<string>bcstm</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>bcstm</string>
 			<key>CFBundleTypeName</key>
 			<string>Binary CTR Audio Stream Audio</string>
 			<key>CFBundleTypeRole</key>
@@ -51,10 +53,28 @@
 			<array>
 				<string>bwav</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>bwav</string>
 			<key>CFBundleTypeName</key>
 			<string>Nintendo BWAV Audio</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>bcwav</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>bcwav</string>
+			<key>CFBundleTypeName</key>
+			<string>Nintendo CTR BWAV</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

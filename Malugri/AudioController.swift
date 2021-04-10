@@ -21,7 +21,7 @@ enum MGError: Error {
 struct MGFileInformation {
     public let fileType: String, codecCode: UInt32, codecString: String,
     sampleRate: UInt, looping: Bool, duration: Int,
-    channelCount, totalSamples, loopPoint, blockSize, totalBlocks: UInt;
+    channelCount, totalSamples, loopPoint, blockSize, totalBlocks: UInt, numTracks: UInt32;
 }
 
 // MARK: - Main player class
@@ -40,7 +40,8 @@ class MalugriPlayer {
                                      totalSamples: gHEAD1_total_samples(),
                                      loopPoint: gHEAD1_loop_start(),
                                      blockSize: gHEAD1_blocks_samples(),
-                                     totalBlocks: gHEAD1_total_blocks())
+                                     totalBlocks: gHEAD1_total_blocks(),
+                                     numTracks: gnum_tracks())
         }
     }
     public func loadFile(file: String) throws {
@@ -71,6 +72,13 @@ class MalugriPlayer {
             return true;
         }
         return gPCM_samples();
+    }
+    public func getChannelLayouts() -> [(Int32, UInt32)] {
+        var result: [(Int32, UInt32)] = [];
+        for i in 0..<Int32(gnum_tracks()) {
+            result.append((i, gHEAD3_num_channels(i)));
+        }
+        return result;
     }
 }
 
