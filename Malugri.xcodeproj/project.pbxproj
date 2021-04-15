@@ -11,6 +11,7 @@
 		6250253822F509D139EB4661 /* libPods-Malugri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01346F5890F05B8E81F326A1 /* libPods-Malugri.a */; };
 		968D4FF4720CE46D49087E0C /* libPods-Malugri-MalugriUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */; };
 		E852359125F6C0ED008E9270 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E852359025F6C0EC008E9270 /* README.md */; };
+		E8ACF15E26232F3D00A0FEE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8ACF16026232F3D00A0FEE9 /* Localizable.strings */; };
 		E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511825E82F0E0025F1C0 /* Util.swift */; };
 		E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511A25E830CA0025F1C0 /* AudioController.swift */; };
 		E8B6511D25E8349A0025F1C0 /* libbrstmcpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */; };
@@ -51,6 +52,12 @@
 		A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Malugri-MalugriUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E73BECD655570475C2BF3 /* Pods-Malugri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri.release.xcconfig"; path = "Target Support Files/Pods-Malugri/Pods-Malugri.release.xcconfig"; sourceTree = "<group>"; };
 		E852359025F6C0EC008E9270 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E8966C8526236C4600E0CFAC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		E8966C8626236C4600E0CFAC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E8ACF1552623298900A0FEE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		E8ACF156262329C900A0FEE9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		E8ACF15F26232F3D00A0FEE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E8ACF16126232F4000A0FEE9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E8B6511825E82F0E0025F1C0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E8B6511A25E830CA0025F1C0 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		E8B6511C25E8349A0025F1C0 /* libbrstmcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbrstmcpp.a; path = Malugri/libbrstmcpp.a; sourceTree = "<group>"; };
@@ -156,6 +163,7 @@
 				E8FE22F0253D87DE009AE121 /* AppDelegate.swift */,
 				E8FE22F2253D87DE009AE121 /* ViewController.swift */,
 				E8FE22F4253D87E3009AE121 /* Assets.xcassets */,
+				E8ACF16026232F3D00A0FEE9 /* Localizable.strings */,
 				E8FE22F6253D87E3009AE121 /* Main.storyboard */,
 				E8FE22F9253D87E3009AE121 /* Info.plist */,
 				E8FE22FA253D87E3009AE121 /* Malugri.entitlements */,
@@ -274,6 +282,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				it,
 			);
 			mainGroup = E8FE22E4253D87DE009AE121;
 			productRefGroup = E8FE22EE253D87DE009AE121 /* Products */;
@@ -293,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E852359125F6C0ED008E9270 /* README.md in Resources */,
+				E8ACF15E26232F3D00A0FEE9 /* Localizable.strings in Resources */,
 				E8FE22F5253D87E3009AE121 /* Assets.xcassets in Resources */,
 				E8FE22F8253D87E3009AE121 /* Main.storyboard in Resources */,
 			);
@@ -428,10 +439,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E8ACF16026232F3D00A0FEE9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8ACF15F26232F3D00A0FEE9 /* en */,
+				E8ACF16126232F4000A0FEE9 /* ru */,
+				E8966C8626236C4600E0CFAC /* it */,
+			);
+			name = Localizable.strings;
+			path = /Users/freeapp/xcode/Malugri/Malugri;
+			sourceTree = "<absolute>";
+		};
 		E8FE22F6253D87E3009AE121 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E8FE22F7253D87E3009AE121 /* Base */,
+				E8ACF1552623298900A0FEE9 /* en */,
+				E8ACF156262329C900A0FEE9 /* ru */,
+				E8966C8526236C4600E0CFAC /* it */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -443,6 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -503,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

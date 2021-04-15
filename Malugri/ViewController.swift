@@ -13,6 +13,7 @@ class ViewController: NSViewController {
     // MARK: - IB Outlets
     
     @IBOutlet weak var infoBox: NSBox!
+    @IBOutlet weak var trackSwitcherDD: NSPopUpButton!
     
     // MARK: - Labels
     
@@ -20,7 +21,6 @@ class ViewController: NSViewController {
     @IBOutlet weak var codecLbl: NSTextField!
     @IBOutlet weak var loopBoolLbl: NSTextField!
     @IBOutlet weak var loopPointLbl: NSTextField!
-    @IBOutlet weak var durationLbl: NSTextField!
     @IBOutlet weak var blockSizeLbl: NSTextField!
     @IBOutlet weak var fileLocation: NSPathControl!
     @IBOutlet weak var totalBlocksLbl: NSTextField!
@@ -48,6 +48,7 @@ class ViewController: NSViewController {
             a.setFrame(b, display: true, animate: false)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(notify(_:)), name: Notification.Name("file"), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(opener(_:)), name: Notification.Name("open"), object: nil);
     }
 
     override var representedObject: Any? {
@@ -56,16 +57,18 @@ class ViewController: NSViewController {
         }
     }
     
+    @objc func opener(_ sender: Notification) -> Void {
+        self.openButton("" as Any);
+    }
+    
     @objc func notify(_ sender: Notification) -> Void {
         if (self.playerController.currentFile != nil) {
             self.stopButton(self.stopBtn!);
         }
         handleFile(path: sender.object! as! String);
-        self.playPauseButton.isEnabled = true;
-        self.stopBtn.isEnabled = true;
-        self.expandButton.isEnabled = true;
-        self.timeSlider.isEnabled = true;
     }
+    
+    
     
     var playerController = MalugriPlayer(using: MGEZAudioBackend());
     
@@ -74,13 +77,21 @@ class ViewController: NSViewController {
             try playerController.loadFile(file: path);
             playerController.backend.needsLoop = playerController.fileInformation.looping;
             playerController.backend.play();
-            self.overviewLbl.stringValue = self.playerController.fileInformation.fileType + "・" + (gHEAD3_num_channels(Int32(playerController.backend.currentTrack)) == 1 ? "Mono" : "Stereo" ) + "・" + String(self.playerController.fileInformation.sampleRate) + " Hz";
+            self.overviewLbl.stringValue = self.playerController.fileInformation.fileType + "・" + (self.playerController.fileInformation.numTracks > 1 ? "                                    " : (gHEAD3_num_channels(Int32(playerController.backend.currentTrack)) == 1 ? NSLocalizedString("Mono", comment: "") : NSLocalizedString("Stereo", comment: "") )) + "・" + String(self.playerController.fileInformation.sampleRate) + " " + NSLocalizedString("Hz", comment: "");
+            if (self.playerController.fileInformation.numTracks > 1){
+                let items = self.playerController.getChannelLayouts();
+                self.trackSwitcherDD.removeAllItems();
+                for item in items {
+                    let lt = (item.1 == 1 ? NSLocalizedString("Mono", comment: "") : NSLocalizedString("Stereo", comment: ""));
+                    self.trackSwitcherDD.addItem(withTitle: NSLocalizedString("TrackTS", comment: "") + " \(item.0): \(lt)");
+                }
+                self.trackSwitcherDD.isHidden = false;
+            }
             self.codecLbl.stringValue = self.playerController.fileInformation.codecString;
-            self.loopBoolLbl.stringValue = self.playerController.fileInformation.looping ? "Yes" : "No";
+            self.loopBoolLbl.stringValue = self.playerController.fileInformation.looping ? NSLocalizedString("Yes", comment: "") : NSLocalizedString("No", comment: "");
             self.loopPointLbl.stringValue = String(self.playerController.fileInformation.loopPoint);
             self.fileLocation.url = URL(fileURLWithPath: path);
             self.blockSizeLbl.stringValue = String(self.playerController.fileInformation.blockSize);
-            self.durationLbl.stringValue = self.playerController.fileInformation.duration.hmsString;
             self.totalBlocksLbl.stringValue = String(self.playerController.fileInformation.totalBlocks);
             self.totalSamplesLbl.stringValue = String(self.playerController.fileInformation.totalSamples);
             if let a = NSApplication.shared.mainWindow {
@@ -88,24 +99,29 @@ class ViewController: NSViewController {
             }
             self.timeSlider.minValue = 0.0;
             self.timeSlider.maxValue = Double(self.playerController.fileInformation.totalSamples - 1);
+            self.playPauseButton.isEnabled = true;
+            self.stopBtn.isEnabled = true;
+            self.expandButton.isEnabled = true;
+            self.timeSlider.isEnabled = true;
             DispatchQueue.global().async {
                 while (self.playerController.backend.state) {
                     DispatchQueue.main.async {
-                        self.ElapsedTimeLabel.stringValue = Int(self.playerController.backend.currentSampleNumber / self.playerController.fileInformation.sampleRate).hmsString;
+                        self.ElapsedTimeLabel.stringValue = Int(self.playerController.backend.currentSampleNumber / self.playerController.fileInformation.sampleRate).hmsString + " / " + self.playerController.fileInformation.duration.hmsString;
                         self.timeSlider.floatValue = Float(self.playerController.backend.currentSampleNumber);
                     }
                     Thread.sleep(forTimeInterval: 0.25);
                 }
             }
 
-        } catch MGError.brstmReadError(let code, description) {
-                MalugriUtil.popupAlert(title: "Error opening file" ,
-                                          message: "brstm_read: " + description + " (code " + String(code) + ")");
+        } catch MGError.brstmReadError(let code, let desc) {
+            MalugriUtil.popupAlert(title: NSLocalizedString("Error opening file", comment:"") ,
+                                   message: "brstm_read: " + desc + " (" + NSLocalizedString("bLCode", comment:"") + " " + String(code) + ")");
         } catch MGError.ifstreamError(let code) {
-                MalugriUtil.popupAlert(title: "Error opening file",
+                MalugriUtil.popupAlert(title: NSLocalizedString("Error opening file", comment:""),
                                           message: "ifstream::open returned error code " + String(code))
         } catch {
-            MalugriUtil.popupAlert(title: "Internal error",
+            print(error);
+            MalugriUtil.popupAlert(title: NSLocalizedString("Internal error", comment:""),
                                         message: "An unexpected error has occurred.")
         }
     }
@@ -125,10 +141,6 @@ class ViewController: NSViewController {
                     }
                     let path = fileUri!.path;
                     handleFile(path: path);
-                    self.playPauseButton.isEnabled = true;
-                    self.stopBtn.isEnabled = true;
-                    self.expandButton.isEnabled = true;
-                    self.timeSlider.isEnabled = true;
                 }
             }
     }
@@ -140,12 +152,14 @@ class ViewController: NSViewController {
         self.stopBtn.isEnabled = false;
         self.expandButton.isEnabled = false;
         self.timeSlider.isEnabled = false;
+        self.trackSwitcherDD.isHidden = true;
         self.timeSlider.floatValue = 0.0;
         self.playPauseButton.image = NSImage.init(imageLiteralResourceName: "NSTouchBarPauseTemplate");
         self.overviewLbl.stringValue = "";
         if let a = NSApplication.shared.mainWindow {
             a.title = "Malugri";
         }
+        self.ElapsedTimeLabel.stringValue = "";
     }
     
     @IBAction func playPause(_ sender: NSButtonCell) {
@@ -157,7 +171,7 @@ class ViewController: NSViewController {
             DispatchQueue.global().async {
                        while (self.playerController.backend.state) {
                            DispatchQueue.main.async {
-                               self.ElapsedTimeLabel.stringValue = Int(self.playerController.backend.currentSampleNumber / self.playerController.fileInformation.sampleRate).hmsString;
+                               self.ElapsedTimeLabel.stringValue = Int(self.playerController.backend.currentSampleNumber / self.playerController.fileInformation.sampleRate).hmsString + " / " + self.playerController.fileInformation.duration.hmsString;
                                self.timeSlider.floatValue = Float(self.playerController.backend.currentSampleNumber);
                            }
                            Thread.sleep(forTimeInterval: 0.25);
@@ -170,7 +184,8 @@ class ViewController: NSViewController {
     @IBAction func expand(_ sender: NSButton) {
         if let a = NSApplication.shared.mainWindow {
             var newFrame: NSRect = a.frame;
-            let diff = (sender.state == NSControl.StateValue.on ?  CGFloat(162) : -CGFloat(162));
+            let diff = (sender.state == NSControl.StateValue.on ?  CGFloat(124) : -CGFloat(124));
+            self.infoBox.isHidden = (sender.state == NSControl.StateValue.on ?  false : true);
             newFrame.size.height += diff
             a.maxSize.height += diff;
             a.minSize.height += diff;
@@ -180,5 +195,9 @@ class ViewController: NSViewController {
     
     @IBAction func changePosition(_ sender: Any) {
         self.playerController.backend.currentSampleNumber = UInt((sender as! NSSlider).floatValue);
+    }
+    @IBAction func trackChange(_ sender: NSPopUpButton) {
+        print(sender.indexOfSelectedItem);
+        self.playerController.backend.currentTrack = UInt32(sender.indexOfSelectedItem);
     }
 }

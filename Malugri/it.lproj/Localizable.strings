@@ -1,0 +1,19 @@
+/*
+  Italian translation by Gianmarco Gargiulo.  
+*/
+"Stereo" = "Stereo";
+"Mono" = "Mono";
+// The track switcher label text
+"TrackTS" = "Traccia";
+"Hz" = "Hz";
+"Yes" = "Sì";
+"No" = "No";
+"Unknown codec" = "Codec sconosciuto";
+"Unknown format" = "Formato sconosciuto";
+"Error opening file" = "Errore nell'apertura del file";
+"Unknown error" = "Errore sconosciuto";
+"Internal error" = "Errore interno";
+"An unexpected error has occurred." = "Si è verificato un errore inaspettato.";
+"has returned error code" = "ha dato il codice di errore";
+// brstm_read error code label
+"bLCode" = "codice";

@@ -31,7 +31,7 @@ class MalugriUtil {
         case 6: return "BRWAV";
         case 7: return "BCWAV";
         case 8: return "BFWAV";
-        default: return "Unknown format";
+        default: return NSLocalizedString("Unknown format", comment:"");
         }
     }
     static func resolveAudioCodec(_ codecCode: UInt) -> String {
@@ -39,7 +39,7 @@ class MalugriUtil {
         case 0: return "8bit PCM";
         case 1: return "16bit PCM";
         case 2: return "DSP-ADPCM";
-        default: return "Unknown codec";
+        default: return NSLocalizedString("Unknown codec", comment:"");
         }
     }
     static func popupAlert(title: String, message: String){
@@ -58,6 +58,6 @@ class MalugriUtil {
         240: "Invalid file",
         230: "Invalid file",
         220: "Audio codec not supported",
-        210: "File not supported"
+        210: "Invalid or unsupported file format."
     ]
 }

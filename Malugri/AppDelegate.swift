@@ -30,5 +30,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         nc.post(name: Notification.Name("file"), object: filename);
         return true;
     }
+    @IBAction func openButton(_ sender: Any) {
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("open"), object: nil);
+    }
 }
 

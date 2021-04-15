@@ -49,11 +49,15 @@ class MalugriPlayer {
         self.currentFile = file;
         let pointer: UnsafePointer<Int8>? = NSString(string: file).utf8String;
         let status = createIFSTREAMObject(strdup(pointer));
+        print(status);
         if (status != 1) {
+            self.closeFile();
             throw MGError.ifstreamError(code: status);
         }
         let status2 = readFstreamBrstm();
         if (status2 > 127) {
+            self.closeFile();
+            print("Unable to open file: " + String(status2));
             throw MGError.brstmReadError(code: status2, description: MalugriUtil.brstmReadErrorCode[status2] ?? "Unknown error");
         }
         backend.initialize(format: self.fileInformation);

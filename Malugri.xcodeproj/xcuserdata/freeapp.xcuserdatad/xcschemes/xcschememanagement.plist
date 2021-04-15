@@ -4,10 +4,43 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Malugri.xcscheme_^#shared#^_</key>
+		<key>Malugri Build.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Malugri It.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Malugri Ru.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>Malugri.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E8FE22EC253D87DE009AE121</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8FE22FE253D87E4009AE121</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8FE2309253D87E4009AE121</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

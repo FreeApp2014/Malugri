@@ -1,0 +1,110 @@
+// The IB localization strings
+/* Class = "NSMenuItem"; title = "Malugri"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "Malugri";
+
+/* Class = "NSMenuItem"; title = "Quit Malugri"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "Выйти из Malugri";
+
+/* Class = "NSMenuItem"; title = "About Malugri"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "О программе Malugri";
+
+/* Class = "NSBox"; title = "File Information"; ObjectID = "7ih-H8-c8y"; */
+"7ih-H8-c8y.title" = "Информация о файле";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Настройки…";
+
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
+"Bw7-FT-i3A.title" = "Save As…";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
+"DVo-aG-piG.title" = "Закрыть";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
+"F2S-fz-NVQ.title" = "Справка";
+
+/* Class = "NSMenuItem"; title = "Malugri Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "Справка Malugri";
+
+/* Class = "NSTextFieldCell"; title = "Block Size"; ObjectID = "H9B-DS-pdi"; */
+"H9B-DS-pdi.title" = "Размер блока";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
+"IAo-SY-fd9.title" = "Открыть…";
+
+/* Class = "NSWindow"; title = "Malugri"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "Malugri";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "Показать все";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
+"LE2-aR-0XJ.title" = "Все окна - на передний план";
+
+/* Class = "NSTextFieldCell"; title = "Loop"; ObjectID = "LcS-jN-Wiy"; */
+"LcS-jN-Wiy.title" = "Зацикливание";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
+"NMo-om-nkz.title" = "Сервисы";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
+"OY7-WF-poV.title" = "Свернуть";
+
+/* Class = "NSMenuItem"; title = "Hide Malugri"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "Скрыть Malugri";
+
+/* Class = "NSTextFieldCell"; title = "Total Samples"; ObjectID = "QuY-j5-cLm"; */
+"QuY-j5-cLm.title" = "Всего сэмплов";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
+"R4o-n2-Eq4.title" = "Развернуть";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
+"Td7-aD-5lo.title" = "Окно";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "Скрыть остальные";
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "Was-JA-tGl"; */
+"Was-JA-tGl.title" = "Создать";
+
+/* Class = "NSTextFieldCell"; title = "Total Blocks"; ObjectID = "YDi-Fl-qdr"; */
+"YDi-Fl-qdr.title" = "Всего блоков";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "Окно";
+
+/* Class = "NSButtonCell"; title = "Open"; ObjectID = "bSo-QR-OlA"; */
+"bSo-QR-OlA.title" = "Открыть";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
+"bib-Uj-vzu.title" = "Файл";
+
+/* Class = "NSTextFieldCell"; title = "Loop Point"; ObjectID = "c7L-Dc-Kdx"; */
+"c7L-Dc-Kdx.title" = "Начало цикла";
+
+/* Class = "NSTextFieldCell"; title = "Codec"; ObjectID = "d7s-c0-AEP"; */
+"d7s-c0-AEP.title" = "Кодек";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
+"dMs-cI-mzQ.title" = "Файл";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
+"hz9-B4-Xy5.title" = "Сервисы";
+
+/* Class = "NSMenuItem"; title = "Save…"; ObjectID = "pxx-59-PXV"; */
+"pxx-59-PXV.title" = "Save…";
+
+/* Class = "NSMenu"; title = "Malugri"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "Malugri";
+
+/* Class = "NSMenuItem"; title = "Track 0: Stereo"; ObjectID = "wIj-di-FV1"; */
+"wIj-di-FV1.title" = "Track 0: Stereo";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Cправка";
+
+

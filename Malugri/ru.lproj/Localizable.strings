@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Free App on 11/04/2021.
+  
+*/
+"Stereo" = "Стерео";
+"Mono" = "Моно";
+// The track switcher label text
+"TrackTS" = "Трэк";
+"Hz" = "Гц";
+"Yes" = "Да";
+"No" = "Нет";
+"Unknown codec" = "Неизвестный кодек";
+"Unknown format" = "Неизвестный формат";
+"Error opening file" = "Ошибка открытия файла";
+"Unknown error" = "Неизвестная ошибка";
+"Internal error" = "Внутренняя ошибка";
+"An unexpected error has occurred." = "Произошла непредвиденная ошибка.";
+"has returned error code" = "вернул код ошибки";
+// brstm_read error code label
+"bLCode" = "код ошибки";
