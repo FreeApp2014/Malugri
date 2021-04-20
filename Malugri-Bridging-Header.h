@@ -83,3 +83,9 @@ struct Brstm {
     //won't be made one by one for every sample
     unsigned int audio_stream_format;
 };
+void setBrstmEncodeSettings(unsigned int fileType, unsigned int fileCodec, unsigned int num_channels, unsigned int num_tracks, unsigned int loopFlag, unsigned long loop_start, unsigned long sample_rate, unsigned long total_samples);
+void writeSamplesToChannel(int channel_id, int16_t* samples, unsigned long size);
+unsigned char runEncoder(unsigned int encodeADPCM);
+unsigned char* getEncFile();
+unsigned long gEFileSize();
+void closeEbrstm();

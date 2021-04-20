@@ -10,6 +10,9 @@
 		2104B1C253D7F1C7E0D2F5FC /* libPods-MalugriTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31253D81803F22A77A1C4922 /* libPods-MalugriTests.a */; };
 		6250253822F509D139EB4661 /* libPods-Malugri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01346F5890F05B8E81F326A1 /* libPods-Malugri.a */; };
 		968D4FF4720CE46D49087E0C /* libPods-Malugri-MalugriUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */; };
+		E839240A262D5565002F2B77 /* BWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8392409262D5565002F2B77 /* BWViewController.swift */; };
+		E839240C262D66A9002F2B77 /* AVFController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E839240B262D66A9002F2B77 /* AVFController.swift */; };
+		E839240E262D6725002F2B77 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E839240D262D6725002F2B77 /* AVFoundation.framework */; };
 		E852359125F6C0ED008E9270 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E852359025F6C0EC008E9270 /* README.md */; };
 		E8ACF15E26232F3D00A0FEE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8ACF16026232F3D00A0FEE9 /* Localizable.strings */; };
 		E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511825E82F0E0025F1C0 /* Util.swift */; };
@@ -51,6 +54,9 @@
 		9C2AB1D6B5AECA43C4D501B2 /* Pods-Malugri-MalugriUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri-MalugriUITests.debug.xcconfig"; path = "Target Support Files/Pods-Malugri-MalugriUITests/Pods-Malugri-MalugriUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Malugri-MalugriUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40E73BECD655570475C2BF3 /* Pods-Malugri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Malugri.release.xcconfig"; path = "Target Support Files/Pods-Malugri/Pods-Malugri.release.xcconfig"; sourceTree = "<group>"; };
+		E8392409262D5565002F2B77 /* BWViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWViewController.swift; sourceTree = "<group>"; };
+		E839240B262D66A9002F2B77 /* AVFController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFController.swift; sourceTree = "<group>"; };
+		E839240D262D6725002F2B77 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E852359025F6C0EC008E9270 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8966C8526236C4600E0CFAC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		E8966C8626236C4600E0CFAC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			files = (
 				E8B6511D25E8349A0025F1C0 /* libbrstmcpp.a in Frameworks */,
 				6250253822F509D139EB4661 /* libPods-Malugri.a in Frameworks */,
+				E839240E262D6725002F2B77 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +118,7 @@
 		40BAF6D0362FB199FAF64189 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E839240D262D6725002F2B77 /* AVFoundation.framework */,
 				01346F5890F05B8E81F326A1 /* libPods-Malugri.a */,
 				A4F156EBD7CBED0241B838A5 /* libPods-Malugri-MalugriUITests.a */,
 				31253D81803F22A77A1C4922 /* libPods-MalugriTests.a */,
@@ -170,6 +178,8 @@
 				E8B6511825E82F0E0025F1C0 /* Util.swift */,
 				E8B6511A25E830CA0025F1C0 /* AudioController.swift */,
 				E8FB164125F6244200E8963A /* AudioBackend.swift */,
+				E8392409262D5565002F2B77 /* BWViewController.swift */,
+				E839240B262D66A9002F2B77 /* AVFController.swift */,
 			);
 			path = Malugri;
 			sourceTree = "<group>";
@@ -399,7 +409,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E839240C262D66A9002F2B77 /* AVFController.swift in Sources */,
 				E8FE22F3253D87DE009AE121 /* ViewController.swift in Sources */,
+				E839240A262D5565002F2B77 /* BWViewController.swift in Sources */,
 				E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */,
 				E8FB164225F6244200E8963A /* AudioBackend.swift in Sources */,
 				E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */,
@@ -588,7 +600,7 @@
 				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N6M3GGC92B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Malugri/Info.plist;
@@ -639,7 +651,7 @@
 				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N6M3GGC92B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Malugri/Info.plist;

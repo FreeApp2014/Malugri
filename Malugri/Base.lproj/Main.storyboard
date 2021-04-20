@@ -62,7 +62,7 @@
                                     <items>
                                         <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
-                                                <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
+                                                <action selector="newButton:" target="Voe-Tx-rLC" id="cLH-iO-1Vi"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
@@ -161,6 +161,216 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="651" y="576"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="4aj-RJ-xxr">
+            <objects>
+                <windowController storyboardIdentifier="bwWindow" id="j8O-br-365" sceneMemberID="viewController">
+                    <window key="window" title="Encode - Malugri" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="MuY-ae-WxG">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="j8O-br-365" id="bnd-jl-7Cz"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="0Ho-jx-SNC" kind="relationship" relationship="window.shadowedContentViewController" id="IYe-o5-4DZ"/>
+                    </connections>
+                </windowController>
+                <customObject id="7A6-b7-xKl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1201" y="500"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mHx-Ze-t9o">
+            <objects>
+                <viewController id="0Ho-jx-SNC" customClass="BWViewController" customModule="Malugri" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ere-ZB-VkZ">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <progressIndicator hidden="YES" wantsLayer="YES" fixedFrame="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="qBF-9W-0YM">
+                                <rect key="frame" x="11" y="12" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uf6-ZP-nqe">
+                                <rect key="frame" x="41" y="12" width="175" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="McG-gq-gTs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nb2-Yu-uwk">
+                                <rect key="frame" x="365" y="2" width="104" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Encode" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wwA-Ds-3Bf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="encodeButton:" target="0Ho-jx-SNC" id="dlC-iT-gaY"/>
+                                </connections>
+                            </button>
+                            <box fixedFrame="YES" title="Input file" translatesAutoresizingMaskIntoConstraints="NO" id="sSM-c1-Z4V">
+                                <rect key="frame" x="1" y="194" width="472" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="bQs-bQ-uKv">
+                                    <rect key="frame" x="3" y="3" width="466" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kie-vD-oil">
+                                            <rect key="frame" x="2" y="8" width="97" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Zk-1k-Arf">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="fileOpen:" target="0Ho-jx-SNC" id="aT8-p8-cXi"/>
+                                            </connections>
+                                        </button>
+                                        <pathControl hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MfR-tW-eG4">
+                                            <rect key="frame" x="101" y="14" width="357" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="sZT-nU-CTL">
+                                                <font key="font" metaFont="system"/>
+                                                <url key="url" string="file://localhost/Applications/"/>
+                                            </pathCell>
+                                        </pathControl>
+                                    </subviews>
+                                </view>
+                            </box>
+                            <box fixedFrame="YES" title="Options" translatesAutoresizingMaskIntoConstraints="NO" id="hKu-cP-pwd">
+                                <rect key="frame" x="1" y="107" width="472" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="d6d-Tv-4b9">
+                                    <rect key="frame" x="3" y="3" width="466" height="69"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2iu-GZ-38D">
+                                            <rect key="frame" x="9" y="45" width="82" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Format" id="klo-sM-oWa">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NER-bZ-V8I">
+                                            <rect key="frame" x="86" y="39" width="124" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="BRSTM" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="sB3-p2-Div" id="cgb-aA-Jjj">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="Mjy-S7-K5Y">
+                                                    <items>
+                                                        <menuItem title="BRSTM" state="on" id="sB3-p2-Div"/>
+                                                        <menuItem title="BCSTM" id="JJG-O9-wpj"/>
+                                                        <menuItem title="BFSTM" id="jfi-cg-FQB"/>
+                                                        <menuItem title="BWAV" id="tj1-5q-A6e">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJa-kg-3ag">
+                                            <rect key="frame" x="213" y="46" width="90" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Codec" id="VLS-zs-Dgy">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMG-zo-QzZ">
+                                            <rect key="frame" x="327" y="39" width="135" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="DSP-ADPCM" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Gyi-ZA-oMg" id="6jC-qJ-v1N">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="1Bf-vo-Anp">
+                                                    <items>
+                                                        <menuItem title="PCM" id="Q89-oz-iym"/>
+                                                        <menuItem title="DSP-ADPCM" state="on" id="Gyi-ZA-oMg"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmi-tN-fAP">
+                                            <rect key="frame" x="9" y="12" width="53" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Loop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OYr-89-1se">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="checkBoxClicked:" target="0Ho-jx-SNC" id="rnZ-fW-wqk"/>
+                                            </connections>
+                                        </button>
+                                        <textField hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9n-VS-s3v">
+                                            <rect key="frame" x="88" y="10" width="157" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Loop point" drawsBackground="YES" id="0da-KB-Gto">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                            </box>
+                            <box fixedFrame="YES" title="Save as" translatesAutoresizingMaskIntoConstraints="NO" id="Sv0-aa-RC0">
+                                <rect key="frame" x="1" y="38" width="472" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="DAq-Kn-HE8">
+                                    <rect key="frame" x="3" y="3" width="466" height="52"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0n6-e2-nlg">
+                                            <rect key="frame" x="2" y="8" width="97" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EOH-Au-wbm">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="fileSave:" target="0Ho-jx-SNC" id="mD0-bJ-j0u"/>
+                                            </connections>
+                                        </button>
+                                        <pathControl hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ev-rL-8eu">
+                                            <rect key="frame" x="101" y="14" width="357" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <pathCell key="cell" selectable="YES" editable="YES" alignment="left" id="I21-LD-JPu">
+                                                <font key="font" metaFont="system"/>
+                                                <url key="url" string="file://localhost/Applications/"/>
+                                            </pathCell>
+                                        </pathControl>
+                                    </subviews>
+                                </view>
+                            </box>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="codec" destination="JMG-zo-QzZ" id="QJr-jr-jre"/>
+                        <outlet property="encBtn" destination="nb2-Yu-uwk" id="Yw2-Zf-3vq"/>
+                        <outlet property="format" destination="NER-bZ-V8I" id="vCL-xe-mqY"/>
+                        <outlet property="inputNPC" destination="MfR-tW-eG4" id="bg5-34-ERB"/>
+                        <outlet property="loopCB" destination="gmi-tN-fAP" id="LMY-iT-VfZ"/>
+                        <outlet property="loopPoint" destination="Z9n-VS-s3v" id="lBu-DW-AoV"/>
+                        <outlet property="outputNPC" destination="7ev-rL-8eu" id="kTX-tP-Uay"/>
+                        <outlet property="spin" destination="qBF-9W-0YM" id="mcr-CL-pKr"/>
+                        <outlet property="status" destination="Uf6-ZP-nqe" id="Ana-Bv-JeM"/>
+                    </connections>
+                </viewController>
+                <customObject id="n4l-4f-lzS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1908" y="475"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">

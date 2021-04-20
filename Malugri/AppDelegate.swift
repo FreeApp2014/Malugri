@@ -34,5 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("open"), object: nil);
     }
+    @IBAction func newButton(_ sender: Any) {
+        var myWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "bwWindow") as! NSWindowController;
+        myWindowController.showWindow(self)
+    }
 }
 
