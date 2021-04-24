@@ -68,8 +68,6 @@ class ViewController: NSViewController {
         handleFile(path: sender.object! as! String);
     }
     
-    
-    
     var playerController = MalugriPlayer(using: MGEZAudioBackend());
     
     func handleFile(path: String){
@@ -94,15 +92,26 @@ class ViewController: NSViewController {
             self.blockSizeLbl.stringValue = String(self.playerController.fileInformation.blockSize);
             self.totalBlocksLbl.stringValue = String(self.playerController.fileInformation.totalBlocks);
             self.totalSamplesLbl.stringValue = String(self.playerController.fileInformation.totalSamples);
-            if let a = NSApplication.shared.mainWindow {
+            
+            let aList = NSApplication.shared.windows;
+            var currentWin: NSWindow? = nil;
+            for win in aList {
+                if let a = win.contentViewController, a == self {
+                    currentWin = win;
+                }
+            }
+            if let a = currentWin {
                 a.title = String(path.split(separator: "/").last ?? "<unknown>") + " - Malugri";
             }
+            
             self.timeSlider.minValue = 0.0;
             self.timeSlider.maxValue = Double(self.playerController.fileInformation.totalSamples - 1);
             self.playPauseButton.isEnabled = true;
             self.stopBtn.isEnabled = true;
             self.expandButton.isEnabled = true;
             self.timeSlider.isEnabled = true;
+            // Reserved for implementing of the export functions
+            // NotificationCenter.default.post(name: Notification.Name("exportStatus"), object: true);
             DispatchQueue.global().async {
                 while (self.playerController.backend.state) {
                     DispatchQueue.main.async {
@@ -160,6 +169,7 @@ class ViewController: NSViewController {
             a.title = "Malugri";
         }
         self.ElapsedTimeLabel.stringValue = "";
+        NotificationCenter.default.post(name: Notification.Name("exportStatus"), object: false);
     }
     
     @IBAction func playPause(_ sender: NSButtonCell) {

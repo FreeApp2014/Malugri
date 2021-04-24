@@ -14,6 +14,7 @@
 		E839240C262D66A9002F2B77 /* AVFController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E839240B262D66A9002F2B77 /* AVFController.swift */; };
 		E839240E262D6725002F2B77 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E839240D262D6725002F2B77 /* AVFoundation.framework */; };
 		E852359125F6C0ED008E9270 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E852359025F6C0EC008E9270 /* README.md */; };
+		E89BFE1E26334D16004118AB /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89BFE1D26334D15004118AB /* ExportViewController.swift */; };
 		E8ACF15E26232F3D00A0FEE9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8ACF16026232F3D00A0FEE9 /* Localizable.strings */; };
 		E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511825E82F0E0025F1C0 /* Util.swift */; };
 		E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6511A25E830CA0025F1C0 /* AudioController.swift */; };
@@ -60,6 +61,7 @@
 		E852359025F6C0EC008E9270 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8966C8526236C4600E0CFAC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		E8966C8626236C4600E0CFAC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E89BFE1D26334D15004118AB /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		E8ACF1552623298900A0FEE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E8ACF156262329C900A0FEE9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		E8ACF15F26232F3D00A0FEE9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				E8B6511825E82F0E0025F1C0 /* Util.swift */,
 				E8B6511A25E830CA0025F1C0 /* AudioController.swift */,
 				E8FB164125F6244200E8963A /* AudioBackend.swift */,
+				E89BFE1D26334D15004118AB /* ExportViewController.swift */,
 				E8392409262D5565002F2B77 /* BWViewController.swift */,
 				E839240B262D66A9002F2B77 /* AVFController.swift */,
 			);
@@ -415,6 +418,7 @@
 				E8B6511925E82F0E0025F1C0 /* Util.swift in Sources */,
 				E8FB164225F6244200E8963A /* AudioBackend.swift in Sources */,
 				E8B6511B25E830CA0025F1C0 /* AudioController.swift in Sources */,
+				E89BFE1E26334D16004118AB /* ExportViewController.swift in Sources */,
 				E8FE22F1253D87DE009AE121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,7 +604,7 @@
 				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = N6M3GGC92B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Malugri/Info.plist;
@@ -651,7 +655,7 @@
 				CODE_SIGN_ENTITLEMENTS = Malugri/Malugri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = N6M3GGC92B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Malugri/Info.plist;

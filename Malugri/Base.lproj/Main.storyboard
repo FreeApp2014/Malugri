@@ -60,30 +60,48 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
-                                            <connections>
-                                                <action selector="newButton:" target="Voe-Tx-rLC" id="cLH-iO-1Vi"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openButton:" target="Voe-Tx-rLC" id="XGA-Cu-b6m"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                                            <connections>
+                                                <action selector="newButton:" target="Voe-Tx-rLC" id="cLH-iO-1Vi"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Export" id="Ds8-3I-CVH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Export" id="hXe-nj-uqX">
+                                                <items>
+                                                    <menuItem title="Current Track" enabled="NO" id="8fB-W4-miz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="eZE-EJ-ZQq"/>
+                                                    <menuItem title="WAV (PCM16)" keyEquivalent="E" id="h0n-ab-UUZ">
+                                                        <connections>
+                                                            <action selector="exportWAVbutton:" target="Voe-Tx-rLC" id="yap-Ak-S1U"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="M4A (AAC)" keyEquivalent="e" id="Sxh-M6-aV9">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="exportAACbutton:" target="Voe-Tx-rLC" id="v3c-it-3hf"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="M4A (ALAC)" keyEquivalent="e" id="LRM-0q-ZUs">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="exportALACbutton:" target="Voe-Tx-rLC" id="VPA-xE-SQQ"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
                                         <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                             <connections>
                                                 <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
-                                            <connections>
-                                                <action selector="saveDocument:" target="Ady-hI-5gd" id="teZ-XB-qJY"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
-                                            <connections>
-                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -132,7 +150,11 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Malugri" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Malugri" customModuleProvider="target">
+                    <connections>
+                        <outlet property="exportMenu" destination="Ds8-3I-CVH" id="DhH-Jl-9g5"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,7 +219,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uf6-ZP-nqe">
-                                <rect key="frame" x="41" y="12" width="175" height="16"/>
+                                <rect key="frame" x="41" y="12" width="294" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="McG-gq-gTs">
                                     <font key="font" metaFont="system"/>
@@ -357,6 +379,8 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="chooseInput" destination="Kie-vD-oil" id="U2o-Yw-K8g"/>
+                        <outlet property="chooseOutput" destination="0n6-e2-nlg" id="sw3-op-qBj"/>
                         <outlet property="codec" destination="JMG-zo-QzZ" id="QJr-jr-jre"/>
                         <outlet property="encBtn" destination="nb2-Yu-uwk" id="Yw2-Zf-3vq"/>
                         <outlet property="format" destination="NER-bZ-V8I" id="vCL-xe-mqY"/>
@@ -623,6 +647,55 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="639"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="wpe-PC-lXp">
+            <objects>
+                <windowController storyboardIdentifier="exportWindow" id="AyU-Hl-eOA" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="Wdp-L8-ths">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="435" height="113"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="AyU-Hl-eOA" id="jtL-9g-Qih"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Ipi-vO-0Gx" kind="relationship" relationship="window.shadowedContentViewController" id="6hC-xc-my1"/>
+                    </connections>
+                </windowController>
+                <customObject id="LWr-ji-DcS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2383" y="219"/>
+        </scene>
+        <!--Export View Controller-->
+        <scene sceneID="fx9-Hk-hn7">
+            <objects>
+                <viewController id="Ipi-vO-0Gx" customClass="ExportViewController" customModule="Malugri" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Aud-Yn-OaW">
+                        <rect key="frame" x="0.0" y="0.0" width="435" height="111"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="X3J-wz-ghf">
+                                <rect key="frame" x="20" y="13" width="387" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0g-sp-B7a">
+                                <rect key="frame" x="18" y="68" width="376" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Performing full decode" id="mRO-Ne-vue">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="VNF-m8-g8o" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2928" y="218"/>
         </scene>
     </scenes>
     <resources>

@@ -15,6 +15,7 @@ class BWViewController: NSViewController {
         // Do view setup here.
     }
     
+    // MARK: - Outlets
     
     @IBOutlet weak var inputNPC: NSPathControl!
     @IBOutlet weak var outputNPC: NSPathControl!
@@ -25,9 +26,13 @@ class BWViewController: NSViewController {
     @IBOutlet weak var spin: NSProgressIndicator!
     @IBOutlet weak var status: NSTextField!
     @IBOutlet weak var encBtn: NSButton!
+    @IBOutlet weak var chooseInput: NSButton!
+    @IBOutlet weak var chooseOutput: NSButton!
     
     private var loadedFile: URL = URL(fileURLWithPath: "/");
     private var savedFile = "";
+    
+    // MARK: - Actions
     
     @IBAction func fileOpen(_ sender: Any) {
         let filePicker = NSOpenPanel();
@@ -48,7 +53,9 @@ class BWViewController: NSViewController {
     }
     @IBAction func fileSave(_ sender: Any) {
         let savePanel = NSSavePanel();
-        savePanel.nameFieldStringValue = "encode.brstm";
+        var filename = String(loadedFile.path.split(separator: "/").last!).split(separator: ".");
+        filename.removeLast();
+        savePanel.nameFieldStringValue = filename.joined(separator: ".") + ".encode." + format.itemTitle(at: format.indexOfSelectedItem).lowercased();
         if (savePanel.runModal() == NSApplication.ModalResponse.OK){
             let fileUri = savePanel.url;
             if (fileUri != nil){
@@ -71,6 +78,8 @@ class BWViewController: NSViewController {
         }
     }
     
+    // MARK: - The encode process
+    
     @IBAction func encodeButton(_ sender: Any) {
         let avf = AVFController(filePath: self.loadedFile);
         print(avf.sampleRate);
@@ -78,13 +87,23 @@ class BWViewController: NSViewController {
         print(avf.samplesCount);
         self.spin.isHidden = false;
         self.spin.startAnimation(nil);
-        self.status.stringValue = "Encoding...";
+        self.status.stringValue = "Processing input file...";
         self.status.isHidden = false;
+        self.encBtn.isEnabled = false;
+        self.format.isEnabled = false;
+        self.codec.isEnabled = false;
+        self.loopCB.isEnabled = false;
+        self.loopPoint.isEnabled = false;
+        self.chooseInput.isEnabled = false;
+        self.chooseOutput.isEnabled = false;
         setBrstmEncodeSettings(UInt32(self.format.indexOfSelectedItem + 1), UInt32(self.codec.indexOfSelectedItem + 1), UInt32(avf.channelCount), 1, self.loopCB.state == .on ? 1 : 0, self.loopCB.state == .off ? 0 : UInt(self.loopPoint.stringValue) ?? 0, UInt(avf.sampleRate), UInt(avf.samplesCount));
         DispatchQueue.global().async {
             let pb = avf.pcmBuffer;
             for channel in 0..<Int(avf.channelCount) {
                 writeSamplesToChannel(Int32(channel), pb.int16ChannelData?[channel], UInt(avf.samplesCount * UInt64(avf.channelCount)));
+            }
+            DispatchQueue.main.sync {
+                self.status.stringValue = "Encoding \(self.format.itemTitle(at: self.format.indexOfSelectedItem))...";
             }
             let st = runEncoder(1);
             print(st);
@@ -94,13 +113,20 @@ class BWViewController: NSViewController {
                     self.spin.isHidden = true;
                     self.status.isHidden = true;
                     self.spin.stopAnimation(nil);
+                    self.encBtn.isEnabled = true;
+                    self.format.isEnabled = true;
+                    self.codec.isEnabled = true;
+                    self.loopCB.isEnabled = true;
+                    self.loopPoint.isEnabled = true;
+                    self.chooseInput.isEnabled = true;
+                    self.chooseOutput.isEnabled = true;
                 }
                 return;
             };
             let fileData: UnsafeMutablePointer<UInt8>? = getEncFile();
             let size = gEFileSize();
             DispatchQueue.main.sync {
-                self.status.stringValue = "Writing file...";
+                self.status.stringValue = "Writing output file...";
             }
             let data = NSData(bytesNoCopy: fileData!, length: Int(size), freeWhenDone: false);
             data.write(toFile:self.savedFile, atomically: true);
@@ -109,6 +135,31 @@ class BWViewController: NSViewController {
                 self.status.isHidden = true;
                 self.spin.stopAnimation(nil);
                 closeEbrstm();
+                let alert: NSAlert = NSAlert();
+                alert.messageText = "Encoding complete";
+                alert.informativeText = "File saved to " + self.savedFile;
+                alert.addButton(withTitle: "OK");
+                alert.addButton(withTitle: "Open file");
+                 if let a = NSApplication.shared.mainWindow {
+                    alert.beginSheetModal(for: a, completionHandler: { response in
+                        if (response == .alertSecondButtonReturn){
+                            let nc = NotificationCenter.default
+                            nc.post(name: Notification.Name("file"), object: self.savedFile);
+                            
+                        }
+                        
+                        let aList = NSApplication.shared.windows;
+                        var currentWin: NSWindow? = nil;
+                        for win in aList {
+                            if let a = win.contentViewController, a == self {
+                                currentWin = win;
+                            }
+                        }
+                        if let a = currentWin {
+                            a.close();
+                        }
+                    })
+                }
             }
         }
     }
