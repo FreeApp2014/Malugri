@@ -6,6 +6,15 @@ Malugri is a modular app to play various formats of video game music. So far sup
 # Malugri Mac
 This is an implementation of MalugriPlayer for MacOS devices, using [EZAudio](https://github.com/syedhali/EZAudio) library backend for audio playback, and AVFoundation for conversion features.
 
+## Installation
+### Homebrew
+Malugri is available as a Homebrew Cask on [my tap](https://github.com/FreeApp2014/homebrew-stuff)
+```
+brew install freeapp2014/stuff/malugri
+```
+### Manual download
+You can download the current binary release manually from the [Releases tab](https://github.com/FreeApp2014/Malugri/releases)
+
 ## Features
 
 The app supports playing all file formats supported by OpenRevolution and associates itself with formats on macOS, so you can play files by double-clicking them
